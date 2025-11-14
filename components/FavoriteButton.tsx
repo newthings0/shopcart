@@ -68,9 +68,8 @@ const FavoriteButton = ({
           <Heart className="group-hover:text-shop_light_green hoverEffect mt-.5" />
           {/* {isArray(favoriteProduct) && favoriteProduct.length > 0 && ( */}
           <span
-            className={`absolute -top-1 -right-1 bg-shop_btn_dark_green text-white rounded-full text-xs font-semibold flex items-center justify-center min-w-[14px] h-[14px] ${
-              favoriteProduct.length > 9 ? "px-1" : ""
-            }`}
+            className={`absolute -top-1 -right-1 bg-shop_btn_dark_green text-white rounded-full text-xs font-semibold flex items-center justify-center min-w-3.5 h-3.5 ${favoriteProduct.length > 9 ? "px-1" : ""
+              }`}
           >
             {/* {favoriteProduct.length > 9 ? "9+" : favoriteProduct.length} */}
             {isArray(favoriteProduct) && favoriteProduct.length > 0

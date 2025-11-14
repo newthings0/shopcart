@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const CategoryDetailSkeleton = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink">
       <Container className="py-10">
         {/* Breadcrumb Skeleton */}
         <div className="mb-8">
@@ -24,7 +24,7 @@ const CategoryDetailSkeleton = () => {
             <div className="flex-1">
               <div className="flex items-start gap-4 mb-4">
                 {/* Category Image Skeleton */}
-                <Skeleton className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-xl" />
+                <Skeleton className="shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-xl" />
 
                 <div className="flex-1">
                   <Skeleton className="h-8 lg:h-9 w-48 mb-2" />
@@ -73,7 +73,7 @@ const CategoryDetailSkeleton = () => {
                 style={{ animationDelay: `${delay}ms` }}
               >
                 {/* Product Image Skeleton */}
-                <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                <div className="relative aspect-square bg-linear-to-br from-gray-100 to-gray-200">
                   <Skeleton className="w-full h-full rounded-none" />
 
                   {/* Sale Badge (some items) */}
@@ -156,7 +156,7 @@ const CategoryDetailSkeleton = () => {
         </div>
 
         {/* Call to Action Section Skeleton */}
-        <div className="mt-12 bg-gradient-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 lg:p-8 border border-shop_light_green/20 text-center">
+        <div className="mt-12 bg-linear-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 lg:p-8 border border-shop_light_green/20 text-center">
           <div className="max-w-2xl mx-auto space-y-4">
             <Skeleton className="h-7 lg:h-8 w-80 mx-auto" />
             <div className="space-y-2">

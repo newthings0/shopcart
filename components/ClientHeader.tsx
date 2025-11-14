@@ -55,9 +55,9 @@ const ClientHeader = () => {
   return (
     <header className="sticky top-0 z-40 py-2 sm:py-3 lg:py-4 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <Container className="h-full">
-        <div className="flex items-center h-full min-h-[3rem] sm:min-h-[3.5rem] lg:min-h-[4rem]">
+        <div className="flex items-center h-full min-h-12 sm:min-h-14 lg:min-h-16">
           {/* Left Section: Mobile Menu + Logo */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <MobileMenu />
             <Logo />
           </div>
@@ -70,7 +70,7 @@ const ClientHeader = () => {
           {/* Right Section: Search + Actions */}
           <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 ml-auto">
             {/* Search Bar */}
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <SearchBar />
             </div>
 

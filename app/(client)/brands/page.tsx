@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const BrandsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink">
       <Container className="py-10">
         <div className="mb-8">
           <Breadcrumb>

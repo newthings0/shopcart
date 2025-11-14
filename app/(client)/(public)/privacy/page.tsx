@@ -129,9 +129,9 @@ const PrivacyPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-16 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -240,7 +240,7 @@ const PrivacyPage = () => {
                     <ul className="space-y-2">
                       {category.items.map((item, itemIndex) => (
                         <li key={itemIndex} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-shop_light_green rounded-full mt-2 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 bg-shop_light_green rounded-full mt-2 shrink-0" />
                           <span className="text-dark-text text-sm">{item}</span>
                         </li>
                       ))}

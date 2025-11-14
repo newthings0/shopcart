@@ -126,9 +126,9 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Banner Section */}
-      <section className="py-20 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-20 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -326,7 +326,7 @@ const ContactPage = () => {
                       exit={{ opacity: 0, height: 0 }}
                       className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg"
                     >
-                      <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+                      <AlertCircle className="w-5 h-5 text-red-600 shrink-0" />
                       <p className="text-sm text-red-700">{error}</p>
                     </motion.div>
                   )}

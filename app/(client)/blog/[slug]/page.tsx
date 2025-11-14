@@ -69,7 +69,7 @@ const SingleBlogPage = async ({
   const readingTime = calculateReadingTime(blog?.body || []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-shop_light_bg to-white">
+    <div className="min-h-screen bg-linear-to-b from-shop_light_bg to-white">
       {/* Breadcrumb */}
       <Container className="pt-6">
         <DynamicBreadcrumb
@@ -193,7 +193,7 @@ const SingleBlogPage = async ({
                     height={600}
                     className="w-full h-[400px] sm:h-[500px] object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
                 </div>
               )}
 
@@ -394,7 +394,7 @@ const BlogSidebar = async ({ slug }: { slug: string }) => {
                 className="flex items-start gap-3 p-3 rounded-lg hover:bg-shop_light_bg transition-all duration-200 group"
               >
                 {blogItem?.mainImage && (
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <Image
                       src={urlFor(blogItem.mainImage)
                         .width(80)
@@ -418,7 +418,7 @@ const BlogSidebar = async ({ slug }: { slug: string }) => {
                 </div>
                 <ArrowRight
                   size={16}
-                  className="flex-shrink-0 text-gray-400 group-hover:text-shop_light_green transition-colors"
+                  className="shrink-0 text-gray-400 group-hover:text-shop_light_green transition-colors"
                 />
               </Link>
             )
@@ -427,7 +427,7 @@ const BlogSidebar = async ({ slug }: { slug: string }) => {
       </Card>
 
       {/* Newsletter Signup */}
-      <Card className="shadow-lg border-0 bg-gradient-to-br from-shop_light_pink to-light-orange/20">
+      <Card className="shadow-lg border-0 bg-linear-to-br from-shop_light_pink to-light-orange/20">
         <CardContent className="p-6 text-center">
           <BookOpen className="w-12 h-12 text-shop_dark_green mx-auto mb-4" />
           <h3 className="text-lg font-bold text-shop_dark_green mb-2">

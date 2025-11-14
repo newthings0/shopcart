@@ -61,9 +61,8 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-y-0 h-screen left-0 z-50 w-full bg-primary/50 shadow-xl transform ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
-      } transition-transform ease-in-out duration-300`}
+      className={`fixed inset-y-0 h-screen left-0 z-50 w-full bg-primary/50 shadow-xl transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform ease-in-out duration-300`}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -152,11 +151,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   onClick={onClose}
                   key={item.title}
                   href={item.href}
-                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
-                    pathname === item.href
+                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${pathname === item.href
                       ? "text-shop_light_green bg-shop_dark_green/50"
                       : "text-zinc-300"
-                  }`}
+                    }`}
                 >
                   <Icon size={18} />
                   {item.title}
@@ -179,11 +177,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   onClick={onClose}
                   key={item.title}
                   href={item.href}
-                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
-                    pathname === item.href
+                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${pathname === item.href
                       ? "text-shop_light_green bg-shop_dark_green/50"
                       : "text-zinc-300"
-                  }`}
+                    }`}
                 >
                   <Icon size={18} />
                   {item.title}
@@ -261,11 +258,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   onClick={onClose}
                   key={item.title}
                   href={item.href}
-                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
-                    pathname === item.href
+                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${pathname === item.href
                       ? "text-shop_light_green bg-shop_dark_green/50"
                       : "text-zinc-300"
-                  }`}
+                    }`}
                 >
                   <Icon size={18} />
                   {item.title}
@@ -279,7 +275,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
         <div className="border-t border-shop_dark_green my-2"></div>
 
         {/* Promotional Banner */}
-        <div className="bg-gradient-to-r from-shop_dark_green to-shop_btn_dark_green rounded-lg p-4 text-center">
+        <div className="bg-linear-to-r from-shop_dark_green to-shop_btn_dark_green rounded-lg p-4 text-center">
           <h4 className="text-sm font-bold text-shop_light_green mb-1">
             Special Offer!
           </h4>

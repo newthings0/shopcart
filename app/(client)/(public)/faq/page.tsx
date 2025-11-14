@@ -238,9 +238,9 @@ const FAQPage = () => {
   });
 
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-16 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -318,22 +318,20 @@ const FAQPage = () => {
                     <button
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
-                      className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 ${
-                        activeCategory === category.id
+                      className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 ${activeCategory === category.id
                           ? "bg-shop_light_green text-white shadow-md"
                           : "hover:bg-shop_light_green/10 text-gray-700 hover:text-shop_dark_green"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-3">
                         <Icon className="w-4 h-4" />
                         <span className="font-medium">{category.label}</span>
                       </div>
                       <span
-                        className={`text-xs px-2 py-1 rounded-full ${
-                          activeCategory === category.id
+                        className={`text-xs px-2 py-1 rounded-full ${activeCategory === category.id
                             ? "bg-white/20"
                             : "bg-gray-200"
-                        }`}
+                          }`}
                       >
                         {category.count}
                       </span>
@@ -411,7 +409,7 @@ const FAQPage = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-16"
         >
-          <Card className="bg-gradient-to-r from-shop_light_green to-shop_dark_green text-white shadow-xl">
+          <Card className="bg-linear-to-r from-shop_light_green to-shop_dark_green text-white shadow-xl">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl mb-2 flex items-center justify-center gap-2">
                 <MessageCircle className="w-6 h-6" />

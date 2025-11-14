@@ -77,9 +77,9 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-20 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,7 +169,7 @@ const AboutPage = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-2xl p-8 text-white">
+              <div className="bg-linear-to-br from-shop_light_green to-shop_dark_green rounded-2xl p-8 text-white">
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-white/20 rounded-lg p-4 text-center">
                     <Star className="w-6 h-6 mx-auto mb-2" />
@@ -272,7 +272,7 @@ const AboutPage = () => {
               >
                 <Card className="text-center hover:shadow-lg transition-all group">
                   <CardContent className="p-6">
-                    <div className="w-24 h-24 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold group-hover:scale-105 transition-transform">
+                    <div className="w-24 h-24 bg-linear-to-br from-shop_light_green to-shop_dark_green rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold group-hover:scale-105 transition-transform">
                       {member.name
                         .split(" ")
                         .map((n) => n[0])
@@ -296,7 +296,7 @@ const AboutPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-20 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

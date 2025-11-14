@@ -19,7 +19,7 @@ const CategoryPage = async () => {
   const categories: Category[] = await getCategories();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink">
       <Container className="py-10">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -70,7 +70,7 @@ const CategoryPage = async () => {
                   className="group relative bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-shop_light_green transform hover:-translate-y-1"
                 >
                   {/* Category Image */}
-                  <div className="relative h-24 sm:h-28 lg:h-32 bg-gradient-to-br from-shop_light_pink to-shop_light_bg overflow-hidden">
+                  <div className="relative h-24 sm:h-28 lg:h-32 bg-linear-to-br from-shop_light_pink to-shop_light_bg overflow-hidden">
                     {category.image ? (
                       <Image
                         src={urlFor(category.image).url()}
@@ -107,7 +107,7 @@ const CategoryPage = async () => {
                       <h3 className="text-sm lg:text-base font-semibold text-shop_dark_green group-hover:text-shop_light_green transition-colors duration-300 line-clamp-1">
                         {category.title}
                       </h3>
-                      <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-shop_light_green group-hover:translate-x-0.5 transition-transform duration-300 flex-shrink-0 ml-2" />
+                      <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-shop_light_green group-hover:translate-x-0.5 transition-transform duration-300 shrink-0 ml-2" />
                     </div>
 
                     {category.description && (
@@ -129,14 +129,14 @@ const CategoryPage = async () => {
                   </div>
 
                   {/* Hover Effect Bottom Border */}
-                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-shop_light_green via-shop_orange to-shop_light_green transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-shop_light_green via-shop_orange to-shop_light_green transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 </Link>
               ))}
             </div>
 
             {/* View All Products CTA after categories */}
             <div className="mt-10 text-center">
-              <div className="bg-gradient-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 border border-shop_light_green/20">
+              <div className="bg-linear-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 border border-shop_light_green/20">
                 <h3 className="text-lg lg:text-xl font-semibold text-shop_dark_green mb-2">
                   Explore Our Complete Product Range
                 </h3>

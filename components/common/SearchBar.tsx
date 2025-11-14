@@ -117,11 +117,11 @@ const SearchBar = () => {
         {/* Desktop Version - Full Input Style */}
         <button
           onClick={() => setShowSearch(true)}
-          className="group hidden sm:flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-shop_light_green rounded-lg px-3 py-2 transition-all duration-200 min-w-[200px] md:min-w-[240px]"
+          className="group hidden sm:flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-shop_light_green rounded-lg px-3 py-2 transition-all duration-200 min-w-[200px] md:min-w-60"
           aria-label={`Open search (${isMac ? "Cmd" : "Ctrl"}+K)`}
         >
           {/* Search Icon */}
-          <Search className="w-4 h-4 text-gray-400 group-hover:text-shop_dark_green transition-colors duration-200 flex-shrink-0" />
+          <Search className="w-4 h-4 text-gray-400 group-hover:text-shop_dark_green transition-colors duration-200 shrink-0" />
 
           {/* Placeholder Text */}
           <span className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-200 flex-1 text-left">
@@ -129,7 +129,7 @@ const SearchBar = () => {
           </span>
 
           {/* Keyboard Shortcut Badge */}
-          <div className="flex items-center gap-1 bg-white border border-gray-200 group-hover:border-gray-300 px-2 py-1 rounded text-xs text-gray-500 font-mono flex-shrink-0 transition-colors duration-200">
+          <div className="flex items-center gap-1 bg-white border border-gray-200 group-hover:border-gray-300 px-2 py-1 rounded text-xs text-gray-500 font-mono shrink-0 transition-colors duration-200">
             <span>{isMac ? "⌘" : "Ctrl"}</span>
             <span>K</span>
           </div>
@@ -148,9 +148,8 @@ const SearchBar = () => {
       {/* Search Modal Overlay */}
       {showSearch && (
         <div
-          className={`fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 px-4 search-modal-overlay ${
-            showSearch ? "animate-fadeIn" : "animate-fadeOut"
-          }`}
+          className={`fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 px-4 search-modal-overlay ${showSearch ? "animate-fadeIn" : "animate-fadeOut"
+            }`}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 w-full h-screen bg-black/60 backdrop-blur-sm" />
@@ -158,12 +157,11 @@ const SearchBar = () => {
           {/* Modal Content */}
           <div
             ref={modalRef}
-            className={`relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden search-modal-content ${
-              showSearch ? "animate-scaleIn" : "animate-scaleOut"
-            }`}
+            className={`relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden search-modal-content ${showSearch ? "animate-scaleIn" : "animate-scaleOut"
+              }`}
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-shop_dark_green to-shop_light_green p-6 text-white">
+            <div className="bg-linear-to-r from-shop_dark_green to-shop_light_green p-6 text-white">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="bg-white/20 p-2 rounded-full">
@@ -239,7 +237,7 @@ const SearchBar = () => {
                         <Link
                           href={`/product/${product?.slug?.current}`}
                           onClick={() => setShowSearch(false)}
-                          className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl border border-gray-200 group-hover:border-shop_light_green transition-colors duration-200"
+                          className="relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-xl border border-gray-200 group-hover:border-shop_light_green transition-colors duration-200"
                         >
                           {product?.images && (
                             <Image
@@ -247,11 +245,10 @@ const SearchBar = () => {
                               height={80}
                               src={urlFor(product?.images[0]).url()}
                               alt={product.name || "Product"}
-                              className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 ${
-                                product?.stock === 0
+                              className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 ${product?.stock === 0
                                   ? "opacity-50 grayscale"
                                   : ""
-                              }`}
+                                }`}
                             />
                           )}
                           {product?.discount && product.discount > 0 && (

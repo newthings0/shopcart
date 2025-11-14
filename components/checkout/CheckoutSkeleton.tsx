@@ -17,7 +17,7 @@ export function CheckoutSkeleton() {
           <CardContent className="space-y-4">
             {/* Item 1 */}
             <div className="flex gap-4 p-4 border rounded-lg">
-              <Skeleton className="w-20 h-20 rounded-md flex-shrink-0" />
+              <Skeleton className="w-20 h-20 rounded-md shrink-0" />
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-3/4" />
                 <Skeleton className="h-3 w-1/2" />
@@ -34,7 +34,7 @@ export function CheckoutSkeleton() {
 
             {/* Item 2 */}
             <div className="flex gap-4 p-4 border rounded-lg">
-              <Skeleton className="w-20 h-20 rounded-md flex-shrink-0" />
+              <Skeleton className="w-20 h-20 rounded-md shrink-0" />
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-2/3" />
                 <Skeleton className="h-3 w-1/3" />
@@ -51,7 +51,7 @@ export function CheckoutSkeleton() {
 
             {/* Item 3 */}
             <div className="flex gap-4 p-4 border rounded-lg">
-              <Skeleton className="w-20 h-20 rounded-md flex-shrink-0" />
+              <Skeleton className="w-20 h-20 rounded-md shrink-0" />
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-4/5" />
                 <Skeleton className="h-3 w-2/5" />

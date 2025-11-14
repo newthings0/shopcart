@@ -17,9 +17,9 @@ import Link from "next/link";
 
 const FAQPage = () => {
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-16 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -88,7 +88,7 @@ const FAQPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <Card className="bg-gradient-to-r from-shop_light_green to-shop_dark_green text-white shadow-xl">
+            <Card className="bg-linear-to-r from-shop_light_green to-shop_dark_green text-white shadow-xl">
               <CardContent className="p-8 text-center">
                 <MessageCircle className="w-12 h-12 mx-auto mb-4 opacity-90" />
                 <h3 className="text-2xl font-bold mb-4">Need More Help?</h3>

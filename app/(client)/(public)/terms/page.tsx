@@ -127,9 +127,9 @@ const TermsPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-16 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

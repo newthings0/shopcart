@@ -230,7 +230,7 @@ export function OrderCheckoutContent({ order }: OrderCheckoutContentProps) {
           <CardContent className="space-y-4">
             {order.products.map((item, index) => (
               <div key={index} className="flex gap-3 p-3 border rounded-lg">
-                <div className="w-16 h-16 flex-shrink-0">
+                <div className="w-16 h-16 shrink-0">
                   <Image
                     src={
                       item.product.images?.[0]

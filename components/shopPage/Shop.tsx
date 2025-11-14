@@ -90,17 +90,17 @@ const Shop = ({ categories, brands }: Props) => {
             {(selectedCategory !== null ||
               selectedBrand !== null ||
               selectedPrice !== null) && (
-              <button
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setSelectedBrand(null);
-                  setSelectedPrice(null);
-                }}
-                className="inline-flex items-center px-4 py-2 bg-red-50 text-red-700 border border-red-200 rounded-md hover:bg-red-100 transition-colors duration-200 text-sm font-medium"
-              >
-                Clear All Filters
-              </button>
-            )}
+                <button
+                  onClick={() => {
+                    setSelectedCategory(null);
+                    setSelectedBrand(null);
+                    setSelectedPrice(null);
+                  }}
+                  className="inline-flex items-center px-4 py-2 bg-red-50 text-red-700 border border-red-200 rounded-md hover:bg-red-100 transition-colors duration-200 text-sm font-medium"
+                >
+                  Clear All Filters
+                </button>
+              )}
           </div>
 
           {/* Active Filters Display */}
@@ -210,7 +210,7 @@ const Shop = ({ categories, brands }: Props) => {
           )}
 
           {/* Desktop Sidebar Filters */}
-          <div className="hidden lg:block lg:w-80 flex-shrink-0">
+          <div className="hidden lg:block lg:w-80 shrink-0">
             <div className="sticky top-6 space-y-4">
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                 <div className="p-4 bg-gray-50 border-b border-gray-200">

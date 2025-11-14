@@ -27,13 +27,13 @@ const DealPage = async () => {
   const totalProducts = products?.length || 0;
   const avgDiscount =
     products?.reduce((acc, product) => acc + (product?.discount || 0), 0) /
-      totalProducts || 0;
+    totalProducts || 0;
   const maxDiscount = Math.max(
     ...(products?.map((p) => p?.discount || 0) || [0])
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-red-50 to-orange-50">
+    <div className="min-h-screen bg-linear-to-b from-red-50 to-orange-50">
       {/* Breadcrumb */}
       <Container className="pt-6">
         <DynamicBreadcrumb />
@@ -41,7 +41,7 @@ const DealPage = async () => {
 
       {/* Hero Section */}
       <Container className="py-8 sm:py-12">
-        <Card className="bg-gradient-to-r from-red-500 to-orange-500 text-white border-0 shadow-xl overflow-hidden">
+        <Card className="bg-linear-to-r from-red-500 to-orange-500 text-white border-0 shadow-xl overflow-hidden">
           <CardContent className="p-6 sm:p-8 lg:p-12">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-8">
               <div className="flex-1 space-y-4 sm:space-y-6">
@@ -103,7 +103,7 @@ const DealPage = async () => {
               </div>
 
               {/* Countdown Timer */}
-              <div className="lg:flex-shrink-0">
+              <div className="lg:shrink-0">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
                   <DealCountdown />
                 </div>
@@ -217,7 +217,7 @@ const DealPage = async () => {
 
       {/* Call to Action */}
       <Container className="py-8 sm:py-12">
-        <Card className="bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+        <Card className="bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
           <CardContent className="p-6 sm:p-8 lg:p-12 text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
               Don&apos;t Miss Out on These Amazing Deals!

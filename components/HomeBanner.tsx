@@ -8,12 +8,12 @@ import Title from "./Title";
 const HomeBanner = async () => {
   return (
     <div className="overflow-hidden">
-      <div className="relative py-8 md:py-12 bg-gradient-to-br from-shop_light_pink via-pink-50 to-orange-50 rounded-2xl shadow-2xl">
+      <div className="relative py-8 md:py-12 bg-linear-to-br from-shop_light_pink via-pink-50 to-orange-50 rounded-2xl shadow-2xl">
         <Container>
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden rounded-2xl">
-            <div className="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-shop_light_green/20 to-transparent rounded-full animate-pulse"></div>
-            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-tr from-shop_dark_green/10 to-transparent rounded-full animate-bounce delay-1000"></div>
+            <div className="absolute -top-16 -right-16 w-32 h-32 bg-linear-to-br from-shop_light_green/20 to-transparent rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-linear-to-tr from-shop_dark_green/10 to-transparent rounded-full animate-bounce delay-1000"></div>
             <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-shop_light_green/30 rounded-full animate-ping delay-500"></div>
             <div className="absolute top-1/4 right-1/3 w-3 h-3 bg-orange-300/40 rounded-full animate-pulse delay-700"></div>
           </div>
@@ -36,7 +36,7 @@ const HomeBanner = async () => {
               <div className="space-y-4">
                 <Title className="text-shop_dark_green font-bold text-4xl sm:text-5xl leading-tight animate-fadeInUp delay-200">
                   <span className="block">Grab Up to</span>
-                  <span className="block bg-gradient-to-r from-shop_light_green to-shop_dark_green bg-clip-text text-transparent animate-shimmer">
+                  <span className="block bg-linear-to-r from-shop_light_green to-shop_dark_green bg-clip-text text-transparent animate-shimmer">
                     50% Off
                   </span>
                   <span className="block text-2xl font-medium text-gray-700">
@@ -80,9 +80,9 @@ const HomeBanner = async () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fadeInUp delay-600">
                 <Link
                   href="/shop"
-                  className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white px-8 py-4 rounded-xl text-base font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  className="group relative inline-flex items-center gap-3 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white px-8 py-4 rounded-xl text-base font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-shop_light_green to-shop_dark_green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="absolute inset-0 bg-linear-to-r from-shop_light_green to-shop_dark_green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <span className="relative z-10 flex items-center gap-3">
                     <ShoppingBag className="w-5 h-5 group-hover:animate-bounce" />
                     Shop Now
@@ -119,10 +119,10 @@ const HomeBanner = async () => {
             </div>
 
             {/* Right Image */}
-            <div className="flex-shrink-0 relative">
+            <div className="shrink-0 relative">
               <div className="relative animate-float">
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-shop_light_green/20 to-orange-300/20 rounded-full blur-3xl scale-110 animate-pulse"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-shop_light_green/20 to-orange-300/20 rounded-full blur-3xl scale-110 animate-pulse"></div>
 
                 {/* Main Image */}
                 <Image
@@ -133,11 +133,11 @@ const HomeBanner = async () => {
                 />
 
                 {/* Floating Elements */}
-                <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce delay-300">
+                <div className="absolute -top-6 -right-6 w-12 h-12 bg-linear-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce delay-300">
                   <Star className="w-6 h-6 text-white" />
                 </div>
 
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-full flex items-center justify-center shadow-lg animate-bounce delay-1000">
+                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-linear-to-br from-shop_light_green to-shop_dark_green rounded-full flex items-center justify-center shadow-lg animate-bounce delay-1000">
                   <span className="text-white font-bold text-sm">50%</span>
                 </div>
               </div>

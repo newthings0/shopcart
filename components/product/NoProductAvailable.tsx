@@ -15,7 +15,7 @@ const NoProductAvailable = ({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center py-16 min-h-80 space-y-8 text-center bg-gradient-to-br from-gray-50/50 to-white rounded-xl border border-gray-200/50 w-full",
+        "flex flex-col items-center justify-center py-16 min-h-80 space-y-8 text-center bg-linear-to-br from-gray-50/50 to-white rounded-xl border border-gray-200/50 w-full",
         className
       )}
     >
@@ -26,7 +26,7 @@ const NoProductAvailable = ({
         transition={{ delay: 0.1, duration: 0.5 }}
         className="relative"
       >
-        <div className="w-20 h-20 bg-gradient-to-br from-shop_light_green/10 to-shop_light_green/20 rounded-full flex items-center justify-center">
+        <div className="w-20 h-20 bg-linear-to-br from-shop_light_green/10 to-shop_light_green/20 rounded-full flex items-center justify-center">
           <Package className="w-10 h-10 text-shop_light_green/60" />
         </div>
         <div className="absolute -top-2 -right-2 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">

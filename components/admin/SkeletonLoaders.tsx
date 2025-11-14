@@ -11,11 +11,11 @@ import { Skeleton } from "../ui/skeleton";
 
 // Admin Layout Skeleton
 export const AdminLayoutSkeleton = () => (
-  <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink/20">
+  <div className="min-h-screen bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink/20">
     <div className="max-w-7xl mx-auto py-6 px-4">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Sidebar Skeleton */}
-        <div className="lg:w-64 flex-shrink-0">
+        <div className="lg:w-64 shrink-0">
           <Card className="p-6">
             <div className="flex items-center gap-3 mb-8 pb-6 border-b">
               <Skeleton className="w-10 h-10 rounded-xl" />

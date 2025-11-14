@@ -170,9 +170,9 @@ const HelpPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
+    <div className="bg-linear-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Banner Section */}
-      <section className="py-20 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+      <section className="py-20 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -290,7 +290,7 @@ const HelpPage = () => {
                   <Card className="h-full hover:shadow-lg transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm">
                     <CardHeader>
                       <div
-                        className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r ${category.color} rounded-lg mb-3`}
+                        className={`inline-flex items-center justify-center w-12 h-12 bg-linear-to-r ${category.color} rounded-lg mb-3`}
                       >
                         <Icon className="w-6 h-6 text-white" />
                       </div>
@@ -387,7 +387,7 @@ const HelpPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <Card className="bg-gradient-to-r from-shop_light_green to-shop_dark_green text-white shadow-xl">
+          <Card className="bg-linear-to-r from-shop_light_green to-shop_dark_green text-white shadow-xl">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl mb-2">Need More Help?</CardTitle>
               <CardDescription className="text-white/80">
