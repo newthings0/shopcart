@@ -171,11 +171,10 @@ const ProductGrid = () => {
       variant={viewMode === mode ? "default" : "outline"}
       size="sm"
       onClick={() => setViewMode(mode)}
-      className={`p-2 hoverEffect ${
-        viewMode === mode
+      className={`p-2 hoverEffect ${viewMode === mode
           ? "bg-shop_light_green hover:bg-shop_dark_green border-shop_light_green"
           : "hover:border-shop_light_green hover:text-shop_light_green"
-      }`}
+        }`}
       title={label}
     >
       {icon}
@@ -187,11 +186,11 @@ const ProductGrid = () => {
       {/* Header Section */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-3 mb-4">
-          <div className="h-1 w-12 bg-gradient-to-r from-shop_light_green to-shop_dark_green rounded-full"></div>
+          <div className="h-1 w-12 bg-linear-to-r from-shop_light_green to-shop_dark_green rounded-full"></div>
           <h2 className="text-3xl lg:text-4xl font-bold text-dark-color">
             Featured Products
           </h2>
-          <div className="h-1 w-12 bg-gradient-to-l from-shop_light_green to-shop_dark_green rounded-full"></div>
+          <div className="h-1 w-12 bg-linear-to-l from-shop_light_green to-shop_dark_green rounded-full"></div>
         </div>
         <p className="text-light-color text-lg max-w-2xl mx-auto">
           Discover our carefully curated selection of premium products
@@ -246,11 +245,10 @@ const ProductGrid = () => {
               variant={showFilters ? "default" : "outline"}
               size="sm"
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-2 hoverEffect ${
-                showFilters
+              className={`flex items-center gap-2 hoverEffect ${showFilters
                   ? "bg-shop_light_green hover:bg-shop_dark_green border-shop_light_green"
                   : "hover:border-shop_light_green hover:text-shop_light_green"
-              }`}
+                }`}
             >
               <Filter size={16} />
               <span className="hidden sm:inline">Filters</span>
@@ -305,7 +303,7 @@ const ProductGrid = () => {
               className="overflow-hidden"
             >
               <Separator className="my-6" />
-              <Card className="border-shop_light_green/20 bg-gradient-to-br from-white via-shop_light_bg/30 to-shop_light_pink/20">
+              <Card className="border-shop_light_green/20 bg-linear-to-br from-white via-shop_light_bg/30 to-shop_light_pink/20">
                 <CardContent className="p-6">
                   <div className="mb-6">
                     <h3 className="text-lg font-bold text-dark-color flex items-center gap-2 mb-2">
@@ -469,22 +467,22 @@ const ProductGrid = () => {
                             {rating === "5"
                               ? "🔥 Premium Only"
                               : rating === "4"
-                              ? "✨ High Quality+"
-                              : "🛍️ Standard+"}
+                                ? "✨ High Quality+"
+                                : "🛍️ Standard+"}
                           </Badge>
                         </div>
                       )}
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col gap-3 justify-end p-4 bg-gradient-to-br from-shop_light_pink/20 to-shop_light_bg/30 rounded-xl border border-shop_light_green/10">
+                    <div className="flex flex-col gap-3 justify-end p-4 bg-linear-to-br from-shop_light_pink/20 to-shop_light_bg/30 rounded-xl border border-shop_light_green/10">
                       <div className="text-center mb-2">
                         <Label className="text-sm font-bold text-dark-color">
                           Quick Actions
                         </Label>
                       </div>
                       <Button
-                        className="w-full bg-gradient-to-r from-shop_light_green to-shop_dark_green hover:from-shop_dark_green hover:to-shop_light_green text-white font-semibold shadow-lg hover:shadow-xl hoverEffect transform hover:-translate-y-0.5"
+                        className="w-full bg-linear-to-r from-shop_light_green to-shop_dark_green hover:from-shop_dark_green hover:to-shop_light_green text-white font-semibold shadow-lg hover:shadow-xl hoverEffect transform hover:-translate-y-0.5"
                         onClick={() => {
                           applyFilters();
                         }}
@@ -510,46 +508,46 @@ const ProductGrid = () => {
                     priceRange[1] < 1000 ||
                     (stockStatus && stockStatus !== "all") ||
                     (rating && rating !== "all")) && (
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm font-medium text-dark-color">
-                          Active Filters:
-                        </span>
-                        {(priceRange[0] > 0 || priceRange[1] < 1000) && (
-                          <Badge
-                            variant="secondary"
-                            className="bg-shop_light_pink text-shop_dark_green"
-                          >
-                            Price: ${priceRange[0]} - ${priceRange[1]}
-                          </Badge>
-                        )}
-                        {stockStatus && stockStatus !== "all" && (
-                          <Badge
-                            variant="secondary"
-                            className="bg-shop_light_pink text-shop_dark_green"
-                          >
-                            Stock:{" "}
-                            {stockStatus === "in-stock"
-                              ? "In Stock"
-                              : "Out of Stock"}
-                          </Badge>
-                        )}
-                        {rating && rating !== "all" && (
-                          <Badge
-                            variant="secondary"
-                            className="bg-shop_light_pink text-shop_dark_green"
-                          >
-                            Quality:{" "}
-                            {rating === "5"
-                              ? "🔥 Premium"
-                              : rating === "4"
-                              ? "✨ High Quality"
-                              : "🛍️ Standard+"}
-                          </Badge>
-                        )}
+                      <div className="mt-6 pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm font-medium text-dark-color">
+                            Active Filters:
+                          </span>
+                          {(priceRange[0] > 0 || priceRange[1] < 1000) && (
+                            <Badge
+                              variant="secondary"
+                              className="bg-shop_light_pink text-shop_dark_green"
+                            >
+                              Price: ${priceRange[0]} - ${priceRange[1]}
+                            </Badge>
+                          )}
+                          {stockStatus && stockStatus !== "all" && (
+                            <Badge
+                              variant="secondary"
+                              className="bg-shop_light_pink text-shop_dark_green"
+                            >
+                              Stock:{" "}
+                              {stockStatus === "in-stock"
+                                ? "In Stock"
+                                : "Out of Stock"}
+                            </Badge>
+                          )}
+                          {rating && rating !== "all" && (
+                            <Badge
+                              variant="secondary"
+                              className="bg-shop_light_pink text-shop_dark_green"
+                            >
+                              Quality:{" "}
+                              {rating === "5"
+                                ? "🔥 Premium"
+                                : rating === "4"
+                                  ? "✨ High Quality"
+                                  : "🛍️ Standard+"}
+                            </Badge>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </CardContent>
               </Card>
             </motion.div>
@@ -593,7 +591,7 @@ const ProductGrid = () => {
         <div className="text-center mt-12">
           <Button
             size="lg"
-            className="px-8 py-3 bg-gradient-to-r from-shop_light_green to-shop_dark_green text-white font-semibold rounded-full hover:shadow-lg transform hover:-translate-y-1 hoverEffect"
+            className="px-8 py-3 bg-linear-to-r from-shop_light_green to-shop_dark_green text-white font-semibold rounded-full hover:shadow-lg transform hover:-translate-y-1 hoverEffect"
           >
             Load More Products
           </Button>
