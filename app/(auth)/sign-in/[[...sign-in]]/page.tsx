@@ -32,7 +32,7 @@ const SignInPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_green/5 via-shop_light_bg to-shop_light_pink/50 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_green/5 via-shop_light_bg to-shop_light_pink/50 relative overflow-hidden">
       <Container>
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,156,60,0.1)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(251,108,8,0.08)_0%,transparent_50%),radial-gradient(circle_at_40%_40%,rgba(252,240,228,0.3)_0%,transparent_50%)]"></div>
@@ -85,7 +85,7 @@ const SignInPage = () => {
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     className="flex items-start gap-4"
                   >
-                    <div className="p-2 bg-shop_light_green/10 rounded-lg flex-shrink-0">
+                    <div className="p-2 bg-shop_light_green/10 rounded-lg shrink-0">
                       <feature.icon className="w-5 h-5 text-shop_light_green" />
                     </div>
                     <div>
@@ -137,11 +137,10 @@ const SignInPage = () => {
                 {/* Clerk Sign In Component */}
                 <div className="clerk-sign-in">
                   <SignIn
-                    signUpUrl={`/sign-up${
-                      redirectTo
+                    signUpUrl={`/sign-up${redirectTo
                         ? `?redirectTo=${encodeURIComponent(redirectTo)}`
                         : ""
-                    }`}
+                      }`}
                     forceRedirectUrl={redirectTo || "/user/dashboard"}
                     fallbackRedirectUrl={redirectTo || "/user/dashboard"}
                   />

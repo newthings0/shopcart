@@ -2,7 +2,7 @@ import { Loader2, Shield } from "lucide-react";
 
 const SignInLoading = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink">
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-8 min-h-[80vh]">
           {/* Left Panel - Welcome Content */}
