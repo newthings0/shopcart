@@ -51,6 +51,7 @@ interface UserOrder {
 
 interface ServerCartContentProps {
   userEmail: string;
+  userId: string;
   userAddresses: Address[];
   userOrders: UserOrder[];
   onAddressesRefresh?: () => Promise<void>;
@@ -58,7 +59,7 @@ interface ServerCartContentProps {
 
 export function ServerCartContent({
   userEmail,
-
+  userId,
   userAddresses,
   userOrders,
   onAddressesRefresh,
@@ -286,6 +287,7 @@ export function ServerCartContent({
           selectedAddress={selectedAddress}
           onAddressSelect={setSelectedAddress}
           onAddressesRefresh={onAddressesRefresh}
+          userId={userId}
         />
 
         {/* Order Summary */}

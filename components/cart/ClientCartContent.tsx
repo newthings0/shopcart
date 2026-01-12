@@ -132,7 +132,7 @@ export function ClientCartContent() {
   return (
     <ServerCartContent
       userEmail={userEmail}
-      // userId={user.id} //remove if not solve
+      userId={user.id}
       userAddresses={userData?.addresses || []}
       userOrders={userData?.orders || []}
       onAddressesRefresh={refreshAddresses}
