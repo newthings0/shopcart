@@ -19,9 +19,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { showToast } from "@/lib/toast";
 import LocationSelector from "@/components/ui/location-selector";
-import { MapPin, Save, X, Trash2 } from "lucide-react";
+import { MapPin, Save, X, Trash2, AlertTriangle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Address {
   _id?: string;
@@ -56,6 +65,7 @@ export default function AddressEditSidebar({
 }: AddressEditSidebarProps) {
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [formData, setFormData] = useState<Address>({
     _id: address?._id || "",
     name: address?.name || "",
@@ -133,8 +143,7 @@ export default function AddressEditSidebar({
       if (response.ok) {
         showToast.success(
           isEditing ? "Address Updated" : "Address Added",
-          `Your address has been successfully ${
-            isEditing ? "updated" : "added"
+          `Your address has been successfully ${isEditing ? "updated" : "added"
           }.`
         );
         onClose();
@@ -154,21 +163,24 @@ export default function AddressEditSidebar({
         "Error",
         error instanceof Error
           ? error.message
-          : `Failed to ${
-              isEditing ? "update" : "add"
-            } address. Please try again.`
+          : `Failed to ${isEditing ? "update" : "add"
+          } address. Please try again.`
       );
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = async () => {
+  const handleDeleteClick = () => {
     if (!isEditing || !address?._id) return;
+    setShowDeleteModal(true);
+  };
 
-    if (!confirm("Are you sure you want to delete this address?")) return;
+  const confirmDelete = async () => {
+    if (!address?._id) return;
 
     setDeleteLoading(true);
+    setShowDeleteModal(false);
 
     try {
       const response = await fetch(`/api/user/addresses`, {
@@ -185,7 +197,7 @@ export default function AddressEditSidebar({
           "Your address has been successfully deleted."
         );
         onClose();
-        // Call callback to refresh addresses instead of page reload
+        // Call callback to refresh addresses in real-time
         if (onAddressChange) {
           onAddressChange();
         }
@@ -355,27 +367,83 @@ export default function AddressEditSidebar({
                 <Button
                   type="button"
                   variant="destructive"
-                  onClick={handleDelete}
+                  onClick={handleDeleteClick}
                   disabled={deleteLoading || loading}
                   className="w-full"
                 >
-                  {deleteLoading ? (
-                    <div className="flex items-center space-x-2">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Deleting...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center space-x-2">
-                      <Trash2 className="h-4 w-4" />
-                      <span>Delete Address</span>
-                    </div>
-                  )}
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete Address
                 </Button>
               </div>
             )}
           </form>
         </div>
       </SheetContent>
+
+      {/* Delete Confirmation Modal */}
+      <Dialog open={showDeleteModal} onOpenChange={setShowDeleteModal}>
+        <DialogPortal>
+          <DialogOverlay />
+          <DialogPrimitive.Content
+            className={cn(
+              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-md translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg"
+            )}
+          >
+            <VisuallyHidden.Root>
+              <DialogTitle>Delete Address Confirmation</DialogTitle>
+            </VisuallyHidden.Root>
+            <div className="text-center space-y-4">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-50 border-4 border-red-100">
+                <AlertTriangle className="h-8 w-8 text-red-600 animate-pulse" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-gray-900">
+                  Delete Address
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Are you sure you want to delete{" "}
+                  <span className="font-semibold text-red-600">
+                    {address?.name}
+                  </span>
+                  ? This action cannot be undone.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3 pt-6">
+              <Button
+                variant="outline"
+                onClick={() => setShowDeleteModal(false)}
+                className="flex-1 border-gray-300 hover:bg-gray-50 font-medium"
+                disabled={deleteLoading}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={confirmDelete}
+                disabled={deleteLoading}
+                className="flex-1 bg-red-600 hover:bg-red-700 focus:ring-red-500 font-semibold shadow-lg hover:shadow-red-200"
+              >
+                {deleteLoading ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Deleting...</span>
+                  </div>
+                ) : (
+                  <>
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Delete Address
+                  </>
+                )}
+              </Button>
+            </div>
+            <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+          </DialogPrimitive.Content>
+        </DialogPortal>
+      </Dialog>
     </Sheet>
   );
 }

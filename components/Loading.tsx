@@ -64,13 +64,12 @@ const Loading = () => {
           {loadingSteps.map((_, index) => (
             <motion.div
               key={index}
-              className={`w-3 h-3 rounded-full ${
-                index === currentStep
+              className={`w-3 h-3 rounded-full ${index === currentStep
                   ? "bg-shop_orange shadow-lg"
                   : index < currentStep
-                  ? "bg-shop_light_green"
-                  : "bg-gray-300"
-              }`}
+                    ? "bg-shop_light_green"
+                    : "bg-gray-300"
+                }`}
               animate={{
                 scale: index === currentStep ? [1, 1.3, 1] : 1,
                 opacity: index <= currentStep ? 1 : 0.5,
@@ -125,7 +124,7 @@ const Loading = () => {
           {/* Progress Bar */}
           <div className="w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-shop_light_green to-shop_orange rounded-full"
+              className="h-full bg-linear-to-r from-shop_light_green to-shop_orange rounded-full"
               initial={{ width: "0%" }}
               animate={{
                 width: `${((currentStep + 1) / loadingSteps.length) * 100}%`,

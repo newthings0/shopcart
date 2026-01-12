@@ -95,7 +95,7 @@ export default function UserLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen py-5 bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink/20">
+    <div className="min-h-screen py-5 bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink/20">
       <Container className="py-6">
         <div className="flex flex-col gap-6">
           {/* Mobile Header */}
@@ -139,7 +139,7 @@ export default function UserLayout({
           <div className="hidden lg:block">
             <div className="bg-white rounded-2xl shadow-xl border border-shop_light_green/10 overflow-hidden">
               {/* User Profile Header */}
-              <div className="p-6 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+              <div className="p-6 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     {user?.imageUrl ? (
@@ -228,52 +228,52 @@ export default function UserLayout({
                   {/* Admin Section - Show for dev.reactbd@gmail.com */}
                   {user?.emailAddresses?.[0]?.emailAddress ===
                     "dev.reactbd@gmail.com" && (
-                    <>
-                      <div className="w-full border-t border-gray-200 my-3"></div>
-                      <div className="w-full text-xs text-gray-500 mb-2 px-2">
-                        Admin Tools
-                      </div>
-                      {adminItems.map((item) => {
-                        const isActive = pathname === item.href;
-                        return (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            className={cn(
-                              "flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group border",
-                              isActive
-                                ? "bg-red-50 border-red-200 shadow-sm"
-                                : "hover:bg-red-50 border-gray-200 hover:border-red-200"
-                            )}
-                          >
-                            <div
+                      <>
+                        <div className="w-full border-t border-gray-200 my-3"></div>
+                        <div className="w-full text-xs text-gray-500 mb-2 px-2">
+                          Admin Tools
+                        </div>
+                        {adminItems.map((item) => {
+                          const isActive = pathname === item.href;
+                          return (
+                            <Link
+                              key={item.title}
+                              href={item.href}
                               className={cn(
-                                "p-2 rounded-lg transition-colors",
+                                "flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group border",
                                 isActive
-                                  ? "bg-red-500 text-white"
-                                  : "bg-gray-100 text-gray-600 group-hover:bg-red-100 group-hover:text-red-600"
+                                  ? "bg-red-50 border-red-200 shadow-sm"
+                                  : "hover:bg-red-50 border-gray-200 hover:border-red-200"
                               )}
                             >
-                              <item.icon className="h-4 w-4" />
-                            </div>
-                            <div>
                               <div
                                 className={cn(
-                                  "font-medium text-sm",
-                                  isActive ? "text-red-700" : "text-gray-900"
+                                  "p-2 rounded-lg transition-colors",
+                                  isActive
+                                    ? "bg-red-500 text-white"
+                                    : "bg-gray-100 text-gray-600 group-hover:bg-red-100 group-hover:text-red-600"
                                 )}
                               >
-                                {item.title}
+                                <item.icon className="h-4 w-4" />
                               </div>
-                              <div className="text-xs text-gray-500">
-                                {item.description}
+                              <div>
+                                <div
+                                  className={cn(
+                                    "font-medium text-sm",
+                                    isActive ? "text-red-700" : "text-gray-900"
+                                  )}
+                                >
+                                  {item.title}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {item.description}
+                                </div>
                               </div>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </>
-                  )}
+                            </Link>
+                          );
+                        })}
+                      </>
+                    )}
                 </div>
               </nav>
             </div>
@@ -283,7 +283,7 @@ export default function UserLayout({
           <div className={cn("lg:hidden", sidebarOpen ? "block" : "hidden")}>
             <div className="bg-white rounded-2xl shadow-xl border border-shop_light_green/10 overflow-hidden">
               {/* User Profile Section */}
-              <div className="p-6 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+              <div className="p-6 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
                 <div className="flex items-center space-x-4">
                   {user?.imageUrl ? (
                     <img
@@ -367,62 +367,62 @@ export default function UserLayout({
                 {/* Admin Section - Mobile */}
                 {user?.emailAddresses?.[0]?.emailAddress ===
                   "dev.reactbd@gmail.com" && (
-                  <>
-                    <div className="border-t border-gray-200 pt-4 mt-4">
-                      <div className="text-xs text-gray-500 mb-3 px-4">
-                        Admin Tools
-                      </div>
-                      {adminItems.map((item) => {
-                        const isActive = pathname === item.href;
-                        return (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            onClick={() => setSidebarOpen(false)}
-                            className={cn(
-                              "flex items-center justify-between p-4 rounded-xl transition-all duration-200 group",
-                              isActive
-                                ? "bg-red-50 border border-red-200 shadow-sm"
-                                : "hover:bg-red-50 border border-transparent"
-                            )}
-                          >
-                            <div className="flex items-center space-x-3">
-                              <div
-                                className={cn(
-                                  "p-2 rounded-lg transition-colors",
-                                  isActive
-                                    ? "bg-red-500 text-white"
-                                    : "bg-gray-100 text-gray-600 group-hover:bg-red-100 group-hover:text-red-600"
-                                )}
-                              >
-                                <item.icon className="h-4 w-4" />
-                              </div>
-                              <div>
+                    <>
+                      <div className="border-t border-gray-200 pt-4 mt-4">
+                        <div className="text-xs text-gray-500 mb-3 px-4">
+                          Admin Tools
+                        </div>
+                        {adminItems.map((item) => {
+                          const isActive = pathname === item.href;
+                          return (
+                            <Link
+                              key={item.title}
+                              href={item.href}
+                              onClick={() => setSidebarOpen(false)}
+                              className={cn(
+                                "flex items-center justify-between p-4 rounded-xl transition-all duration-200 group",
+                                isActive
+                                  ? "bg-red-50 border border-red-200 shadow-sm"
+                                  : "hover:bg-red-50 border border-transparent"
+                              )}
+                            >
+                              <div className="flex items-center space-x-3">
                                 <div
                                   className={cn(
-                                    "font-medium text-sm",
-                                    isActive ? "text-red-700" : "text-gray-900"
+                                    "p-2 rounded-lg transition-colors",
+                                    isActive
+                                      ? "bg-red-500 text-white"
+                                      : "bg-gray-100 text-gray-600 group-hover:bg-red-100 group-hover:text-red-600"
                                   )}
                                 >
-                                  {item.title}
+                                  <item.icon className="h-4 w-4" />
                                 </div>
-                                <div className="text-xs text-gray-500">
-                                  {item.description}
+                                <div>
+                                  <div
+                                    className={cn(
+                                      "font-medium text-sm",
+                                      isActive ? "text-red-700" : "text-gray-900"
+                                    )}
+                                  >
+                                    {item.title}
+                                  </div>
+                                  <div className="text-xs text-gray-500">
+                                    {item.description}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <ChevronRight
-                              className={cn(
-                                "h-4 w-4 transition-colors",
-                                isActive ? "text-red-600" : "text-gray-400"
-                              )}
-                            />
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </>
-                )}
+                              <ChevronRight
+                                className={cn(
+                                  "h-4 w-4 transition-colors",
+                                  isActive ? "text-red-600" : "text-gray-400"
+                                )}
+                              />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
               </nav>
 
               {/* Mobile Sign Out Button */}

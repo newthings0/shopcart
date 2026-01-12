@@ -177,7 +177,7 @@ const AdminAnalytics = () => {
 
     return (
       <Card className="group hover:shadow-xl transition-all duration-300 border-shop_light_green/20 hover:border-shop_light_green/40 overflow-hidden">
-        <div className={`h-1 bg-gradient-to-r ${color}`}></div>
+        <div className={`h-1 bg-linear-to-r ${color}`}></div>
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-light-color flex items-center justify-between">
             {title}
@@ -514,8 +514,8 @@ const AdminAnalytics = () => {
                   $
                   {analytics?.revenue?.total && analytics?.orders?.total
                     ? (
-                        analytics.revenue.total / analytics.orders.total
-                      ).toFixed(2)
+                      analytics.revenue.total / analytics.orders.total
+                    ).toFixed(2)
                     : 0}
                 </div>
                 <div className="text-sm text-purple-500">Avg Order Value</div>
@@ -561,11 +561,11 @@ const AdminAnalytics = () => {
                   </div>
                 </div>
               )) || (
-                <div className="text-center py-6 text-light-color">
-                  <Activity className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">No recent activity available</p>
-                </div>
-              )}
+                  <div className="text-center py-6 text-light-color">
+                    <Activity className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                    <p className="text-sm">No recent activity available</p>
+                  </div>
+                )}
             </div>
           </CardContent>
         </Card>

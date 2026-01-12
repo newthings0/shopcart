@@ -37,11 +37,11 @@ const ShopByBrands = async () => {
       {/* Header Section */}
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-3 mb-4">
-          <div className="h-1 w-12 bg-gradient-to-r from-shop_orange to-shop_light_orange rounded-full"></div>
+          <div className="h-1 w-12 bg-linear-to-r from-shop_orange to-shop_light_orange rounded-full"></div>
           <Title className="text-3xl lg:text-4xl font-bold text-dark-color">
             Shop By Brands
           </Title>
-          <div className="h-1 w-12 bg-gradient-to-l from-shop_orange to-shop_light_orange rounded-full"></div>
+          <div className="h-1 w-12 bg-linear-to-l from-shop_orange to-shop_light_orange rounded-full"></div>
         </div>
         <p className="text-light-color text-lg max-w-2xl mx-auto">
           Discover products from your favorite trusted brands
@@ -68,7 +68,7 @@ const ShopByBrands = async () => {
       </div>
 
       {/* Brands Grid */}
-      <div className="bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink p-8 lg:p-12 rounded-3xl shadow-xl border border-shop_light_green/20 mb-16">
+      <div className="bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink p-8 lg:p-12 rounded-3xl shadow-xl border border-shop_light_green/20 mb-16">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
           {brands?.map((brand, index) => (
             <Link
@@ -89,7 +89,7 @@ const ShopByBrands = async () => {
                     height={80}
                     className="max-w-full max-h-full object-contain group-hover:scale-110 hoverEffect filter group-hover:brightness-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-shop_orange/5 to-transparent opacity-0 group-hover:opacity-100 hoverEffect rounded-xl"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-shop_orange/5 to-transparent opacity-0 group-hover:opacity-100 hoverEffect rounded-xl"></div>
                 </div>
               )}
             </Link>
@@ -122,11 +122,11 @@ const ShopByBrands = async () => {
           {extraData?.map((item, index) => (
             <div
               key={index}
-              className="group text-center p-6 rounded-2xl bg-gradient-to-br from-shop_light_bg to-white border border-shop_light_green/10 hover:border-shop_orange/30 hover:shadow-lg hoverEffect"
+              className="group text-center p-6 rounded-2xl bg-linear-to-br from-shop_light_bg to-white border border-shop_light_green/10 hover:border-shop_orange/30 hover:shadow-lg hoverEffect"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon Container */}
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-shop_light_pink to-shop_light_orange/20 text-shop_orange group-hover:from-shop_orange group-hover:to-shop_light_orange group-hover:text-white group-hover:scale-110 hoverEffect mb-4">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-linear-to-br from-shop_light_pink to-shop_light_orange/20 text-shop_orange group-hover:from-shop_orange group-hover:to-shop_light_orange group-hover:text-white group-hover:scale-110 hoverEffect mb-4">
                 <span className="transform group-hover:scale-110 hoverEffect">
                   {item?.icon}
                 </span>
@@ -147,7 +147,7 @@ const ShopByBrands = async () => {
 
         {/* Features Footer */}
         <div className="text-center mt-10 pt-8 border-t border-shop_light_green/20">
-          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-shop_light_pink to-shop_light_bg rounded-2xl border border-shop_orange/20">
+          <div className="inline-flex items-center gap-4 px-8 py-4 bg-linear-to-r from-shop_light_pink to-shop_light_bg rounded-2xl border border-shop_orange/20">
             <div className="w-2 h-2 bg-shop_orange rounded-full animate-pulse"></div>
             <span className="text-dark-text font-medium">
               Trusted by thousands of customers worldwide

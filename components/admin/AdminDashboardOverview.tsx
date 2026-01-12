@@ -139,9 +139,8 @@ const AdminDashboardOverview = () => {
     },
     {
       title: "Account Requests",
-      description: `${
-        accountRequests?.totalPendingRequests || 0
-      } pending requests`,
+      description: `${accountRequests?.totalPendingRequests || 0
+        } pending requests`,
       icon: UserCheck,
       href: "/admin/account-requests",
       color: "from-amber-500 to-orange-600",
@@ -244,7 +243,7 @@ const AdminDashboardOverview = () => {
             >
               <Link href={stat.href}>
                 <Card className="group hover:shadow-2xl transition-all duration-300 cursor-pointer border-shop_light_green/20 hover:border-shop_light_green/40 overflow-hidden">
-                  <div className={`h-1 bg-gradient-to-r ${stat.color}`}></div>
+                  <div className={`h-1 bg-linear-to-r ${stat.color}`}></div>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-sm font-medium text-light-color flex items-center justify-between">
                       {stat.title}
@@ -292,12 +291,12 @@ const AdminDashboardOverview = () => {
             </p>
           </div>
 
-          <Card className="border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-amber-100">
+          <Card className="border-2 border-amber-200 bg-linear-to-br from-amber-50 to-amber-100">
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="flex items-center justify-center mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center">
                       <Crown className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -309,7 +308,7 @@ const AdminDashboardOverview = () => {
 
                 <div className="text-center">
                   <div className="flex items-center justify-center mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                       <Building2 className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -321,7 +320,7 @@ const AdminDashboardOverview = () => {
 
                 <div className="text-center">
                   <div className="flex items-center justify-center mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-green-500 to-green-600 flex items-center justify-center">
                       <UserCheck className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -371,7 +370,7 @@ const AdminDashboardOverview = () => {
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div
-                            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center group-hover:scale-110 transition-transform`}
+                            className={`w-12 h-12 rounded-xl bg-linear-to-br ${action.color} flex items-center justify-center group-hover:scale-110 transition-transform`}
                           >
                             <Icon className="w-6 h-6 text-white" />
                           </div>

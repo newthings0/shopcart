@@ -1,12 +1,7 @@
-import AdminPremiumFeature from "@/components/admin/AdminPremiumFeature";
+import AdminReviews from "@/components/admin/AdminReviews";
 
 const AdminReviewsPage = () => {
-  return (
-    <AdminPremiumFeature
-      featureName="Review Management"
-      description="Manage customer reviews, moderate content, and gain valuable insights from customer feedback with our premium review management system."
-    />
-  );
+  return <AdminReviews />;
 };
 
 export default AdminReviewsPage;

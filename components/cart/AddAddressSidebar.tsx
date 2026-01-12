@@ -233,7 +233,7 @@ export function AddAddressSidebar({
             </div>
           </div>
 
-          <SheetFooter className="flex-shrink-0">
+          <SheetFooter className="shrink-0">
             <div className="flex gap-2 w-full">
               <Button
                 type="button"

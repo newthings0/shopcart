@@ -15,11 +15,11 @@ const LatestBlog = async () => {
       {/* Header Section */}
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-3 mb-4">
-          <div className="h-1 w-12 bg-gradient-to-r from-shop_light_green to-shop_dark_green rounded-full"></div>
+          <div className="h-1 w-12 bg-linear-to-r from-shop_light_green to-shop_dark_green rounded-full"></div>
           <Title className="text-3xl lg:text-4xl font-bold text-dark-color">
             Latest Blog Posts
           </Title>
-          <div className="h-1 w-12 bg-gradient-to-l from-shop_light_green to-shop_dark_green rounded-full"></div>
+          <div className="h-1 w-12 bg-linear-to-l from-shop_light_green to-shop_dark_green rounded-full"></div>
         </div>
         <p className="text-light-color text-lg max-w-2xl mx-auto">
           Stay updated with our latest insights, tips, and industry news
@@ -65,7 +65,7 @@ const LatestBlog = async () => {
                     className="w-full h-48 object-cover group-hover:scale-110 hoverEffect"
                   />
                 </Link>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 hoverEffect"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 hoverEffect"></div>
               </div>
             )}
 
@@ -126,7 +126,7 @@ const LatestBlog = async () => {
       {/* Bottom CTA */}
       {blogs && blogs.length > 0 && (
         <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-shop_light_pink to-shop_light_bg rounded-2xl border border-shop_light_green/20">
+          <div className="inline-flex items-center gap-4 px-8 py-4 bg-linear-to-r from-shop_light_pink to-shop_light_bg rounded-2xl border border-shop_light_green/20">
             <div className="w-2 h-2 bg-shop_light_green rounded-full animate-pulse"></div>
             <span className="text-dark-text font-medium">
               Discover more insights and stories in our blog section

@@ -123,7 +123,7 @@ export const CategoryGridSkeleton = () => (
         <Card key={i} className="overflow-hidden group cursor-pointer">
           <div className="aspect-square relative">
             <Skeleton className="h-full w-full" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4">
               <Skeleton className="h-4 w-3/4 bg-white/30" />
             </div>

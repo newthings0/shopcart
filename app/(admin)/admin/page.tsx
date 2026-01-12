@@ -1,12 +1,7 @@
-import AdminPremiumFeature from "@/components/admin/AdminPremiumFeature";
+import AdminDashboardOverview from "@/components/admin/AdminDashboardOverview";
 
 const AdminPage = () => {
-  return (
-    <AdminPremiumFeature
-      featureName="Admin Dashboard"
-      description="Unlock powerful analytics, insights, and management tools with the premium version of ShopCart Pro."
-    />
-  );
+  return <AdminDashboardOverview />;
 };
 
 export default AdminPage;

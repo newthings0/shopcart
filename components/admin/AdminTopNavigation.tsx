@@ -22,7 +22,6 @@ import {
   ChevronUp,
   Star,
   Mail,
-  Crown,
 } from "lucide-react";
 
 interface AdminTopNavigationProps {
@@ -41,13 +40,11 @@ const adminRoutes = [
     label: "Dashboard",
     icon: LayoutDashboard,
     href: "/admin",
-    isPremium: true,
   },
   {
     label: "Analytics",
     icon: BarChart3,
     href: "/admin/analytics",
-    isPremium: true,
   },
   {
     label: "Users",
@@ -73,13 +70,11 @@ const adminRoutes = [
     label: "Reviews",
     icon: Star,
     href: "/admin/reviews",
-    isPremium: true,
   },
   {
     label: "Subscriptions",
     icon: Mail,
     href: "/admin/subscriptions",
-    isPremium: true,
   },
   {
     label: "Notifications",
@@ -108,7 +103,7 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
       <div className="lg:hidden">
         <div className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-shop_light_green/10">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-xl">
+            <div className="p-2 bg-linear-to-br from-shop_light_green to-shop_dark_green rounded-xl">
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -135,7 +130,7 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
       <div className="hidden lg:block">
         <div className="bg-white rounded-2xl shadow-xl border border-shop_light_green/10 overflow-hidden">
           {/* Admin Profile Header */}
-          <div className="p-6 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
+          <div className="p-6 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <div className="p-3 bg-white/20 rounded-xl">
@@ -223,7 +218,7 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
                         className={cn(
                           "admin-nav-item flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 group border-2 transform hover:scale-[1.02] whitespace-nowrap shrink-0",
                           isActive
-                            ? "active bg-shop_light_green/10 border-shop_light_green shadow-md scale-[1.02]"
+                            ? "active bg-shop_light_green/10 border-shop_light_green shadow-md"
                             : "hover:bg-gray-50 border-gray-200 hover:border-shop_light_green/40"
                         )}
                         style={{
@@ -244,14 +239,11 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
                         </div>
                         <div
                           className={cn(
-                            "font-medium text-xs transition-colors duration-200 flex items-center gap-1",
+                            "font-medium text-xs transition-colors duration-200",
                             isActive ? "text-shop_dark_green" : "text-gray-900"
                           )}
                         >
-                          <span>{route.label}</span>
-                          {route.isPremium && (
-                            <Crown className="w-3 h-3 text-yellow-500" />
-                          )}
+                          {route.label}
                         </div>
                       </Link>
                     );
@@ -283,7 +275,7 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
           {/* Admin Profile Section */}
           <div
             className={cn(
-              "p-6 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white transition-all duration-200 delay-75",
+              "p-6 bg-linear-to-r from-shop_dark_green to-shop_light_green text-white transition-all duration-200 delay-75",
               mobileMenuOpen
                 ? "translate-y-0 opacity-100"
                 : "-translate-y-2 opacity-0"
@@ -337,7 +329,7 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
                   className={cn(
                     "admin-nav-item flex items-center gap-4 p-4 rounded-xl transition-all duration-200 group",
                     isActive
-                      ? "active bg-gradient-to-r from-shop_light_green to-shop_dark_green text-white shadow-lg"
+                      ? "active bg-linear-to-r from-shop_light_green to-shop_dark_green text-white shadow-lg"
                       : "hover:bg-shop_light_bg hover:shadow-md text-gray-900"
                   )}
                   style={{
@@ -357,14 +349,11 @@ const AdminTopNavigation = ({ currentPath, user }: AdminTopNavigationProps) => {
                   <div className="flex-1">
                     <div
                       className={cn(
-                        "font-semibold text-base transition-colors duration-200 flex items-center gap-2",
+                        "font-semibold text-base transition-colors duration-200",
                         isActive ? "text-white" : "text-gray-900"
                       )}
                     >
-                      <span>{route.label}</span>
-                      {route.isPremium && (
-                        <Crown className="w-4 h-4 text-yellow-400" />
-                      )}
+                      {route.label}
                     </div>
                   </div>
                   {isActive && (

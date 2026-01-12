@@ -89,15 +89,18 @@ export const UserActionModal: FC<UserActionModalProps> = ({
           title: "Delete User from Sanity",
           icon: <Trash2 className="h-5 w-5 text-red-600" />,
           description:
-            "This will permanently delete the user record from Sanity database.",
+            "This will permanently delete the user and ALL related data from Sanity database.",
           confirmText: "Delete from Sanity",
           confirmVariant: "destructive" as const,
           consequences: [
-            "User record will be permanently deleted from Sanity",
-            "All user data, preferences, and history will be lost",
-            "User will no longer receive notifications",
-            "This action CANNOT be undone",
-            "User will remain in Clerk authentication system",
+            "❌ User record will be permanently deleted from Sanity",
+            "📧 All addresses will be deleted",
+            "🛒 All orders will be deleted",
+            "⭐ All reviews will be deleted",
+            "🔔 All notifications will be deleted",
+            "💼 Employee data (if any) will be deleted",
+            "⚠️ This action CANNOT be undone",
+            "✅ User will remain in Clerk (can re-register)",
           ],
         };
 
@@ -110,9 +113,9 @@ export const UserActionModal: FC<UserActionModalProps> = ({
   if (!config) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={isLoading ? undefined : onClose}>
       <DialogPortal>
-        <DialogOverlay />
+        <DialogOverlay className={isLoading ? "pointer-events-none" : ""} />
         <DialogPrimitive.Content
           className={cn(
             "fixed left-[50%] top-[50%] z-50 grid w-full max-w-md translate-x-[-50%] translate-y-[-50%] gap-6 border bg-background p-6 shadow-lg duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg"
@@ -130,8 +133,8 @@ export const UserActionModal: FC<UserActionModalProps> = ({
                 action === "activate"
                   ? "bg-green-50 border-green-100"
                   : action === "deactivate"
-                  ? "bg-orange-50 border-orange-100"
-                  : "bg-red-50 border-red-100"
+                    ? "bg-orange-50 border-orange-100"
+                    : "bg-red-50 border-red-100"
               )}
             >
               <div
@@ -185,8 +188,8 @@ export const UserActionModal: FC<UserActionModalProps> = ({
                 action === "activate"
                   ? "bg-green-50 border-green-200"
                   : action === "deactivate"
-                  ? "bg-orange-50 border-orange-200"
-                  : "bg-blue-50 border-blue-200"
+                    ? "bg-orange-50 border-orange-200"
+                    : "bg-blue-50 border-blue-200"
               )}
             >
               <h4
@@ -195,8 +198,8 @@ export const UserActionModal: FC<UserActionModalProps> = ({
                   action === "activate"
                     ? "text-green-900"
                     : action === "deactivate"
-                    ? "text-orange-900"
-                    : "text-blue-900"
+                      ? "text-orange-900"
+                      : "text-blue-900"
                 )}
               >
                 What will happen:
@@ -207,8 +210,8 @@ export const UserActionModal: FC<UserActionModalProps> = ({
                   action === "activate"
                     ? "text-green-800"
                     : action === "deactivate"
-                    ? "text-orange-800"
-                    : "text-blue-800"
+                      ? "text-orange-800"
+                      : "text-blue-800"
                 )}
               >
                 {config.consequences.map((consequence, index) => (
@@ -219,8 +222,8 @@ export const UserActionModal: FC<UserActionModalProps> = ({
                         action === "activate"
                           ? "text-green-400"
                           : action === "deactivate"
-                          ? "text-orange-400"
-                          : "text-blue-400"
+                            ? "text-orange-400"
+                            : "text-blue-400"
                       )}
                     >
                       •
@@ -236,15 +239,15 @@ export const UserActionModal: FC<UserActionModalProps> = ({
               (action === "deactivate" &&
                 user.notificationCount &&
                 user.notificationCount > 0)) && (
-              <div className="flex items-start gap-3 p-4 border rounded-lg bg-red-50 border-red-200">
-                <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5 animate-pulse" />
-                <div className="text-sm text-red-800">
-                  {action === "delete"
-                    ? "This action is permanent and cannot be undone. The user will lose all their Sanity data."
-                    : `This user has received ${user.notificationCount} notifications. Deactivating will prevent future notifications.`}
+                <div className="flex items-start gap-3 p-4 border rounded-lg bg-red-50 border-red-200">
+                  <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5 animate-pulse" />
+                  <div className="text-sm text-red-800">
+                    {action === "delete"
+                      ? "This action is permanent and cannot be undone. The user will lose all their Sanity data."
+                      : `This user has received ${user.notificationCount} notifications. Deactivating will prevent future notifications.`}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
 
           {/* Footer Buttons */}
@@ -273,7 +276,10 @@ export const UserActionModal: FC<UserActionModalProps> = ({
           </div>
 
           {/* Close Button */}
-          <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+          <DialogPrimitive.Close
+            disabled={isLoading}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-30 data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+          >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>

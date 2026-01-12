@@ -58,13 +58,15 @@ export async function GET(request: NextRequest) {
     const offset = parseInt(searchParams.get("offset") || "0");
     const query = searchParams.get("query") || "";
     const activeOnly = searchParams.get("activeOnly") === "true";
+    const sanityOnly = searchParams.get("sanityOnly") === "true";
+    const clerkOnly = searchParams.get("clerkOnly") === "true";
 
     // Fetch data in parallel for better performance
     const [clerkUsers, sanityUsers] = await Promise.all([
-      // Fetch only the needed users from Clerk
+      // Fetch users from Clerk
       clerk.users.getUserList({
-        limit: query ? 100 : limit,
-        offset: query ? 0 : offset,
+        limit: query ? 500 : Math.max(limit, 100),
+        offset: query ? 0 : Math.max(offset - 100, 0),
         query: query || undefined,
         orderBy: "-created_at",
       }),
@@ -142,16 +144,62 @@ export async function GET(request: NextRequest) {
       };
     });
 
+    // Add Sanity users that don't exist in Clerk (orphaned users)
+    const clerkUserIds = new Set(clerkUsers.data.map((u) => u.id));
+    const orphanedSanityUsers = sanityUsers
+      .filter(
+        (sanityUser: SanityUser) => !clerkUserIds.has(sanityUser.clerkUserId)
+      )
+      .map((sanityUser: SanityUser) => ({
+        id: sanityUser.clerkUserId,
+        clerkUserId: sanityUser.clerkUserId,
+        firstName: sanityUser.firstName || "Unknown",
+        lastName: sanityUser.lastName || "User",
+        fullName: `${sanityUser.firstName || "Unknown"} ${
+          sanityUser.lastName || "User"
+        }`.trim(),
+        email: sanityUser.email || "No email",
+        imageUrl: "/default-avatar.png",
+        createdAt: new Date(sanityUser.createdAt || Date.now()).getTime(),
+        lastSignInAt: undefined,
+        emailVerified: false,
+        banned: false,
+        locked: false,
+        // Sanity-specific fields
+        isActive: sanityUser.isActive || false,
+        activatedAt: sanityUser.activatedAt,
+        activatedBy: sanityUser.activatedBy,
+        sanityId: sanityUser._id,
+        inSanity: true,
+        loyaltyPoints: sanityUser.loyaltyPoints || 0,
+        totalSpent: sanityUser.totalSpent || 0,
+        notificationCount: sanityUser.notificationCount || 0,
+        // Employee fields
+        isEmployee: sanityUser.isEmployee || false,
+        employeeRole: sanityUser.employeeRole,
+        employeeStatus: sanityUser.employeeStatus,
+      }));
+
+    // Merge both lists
+    const allUsers = [...combinedUsers, ...orphanedSanityUsers];
+
     // Filter based on query if provided
-    let filteredUsers = combinedUsers;
+    let filteredUsers = allUsers;
     if (query) {
       const lowerQuery = query.toLowerCase();
-      filteredUsers = combinedUsers.filter(
+      filteredUsers = allUsers.filter(
         (user) =>
           user.firstName?.toLowerCase().includes(lowerQuery) ||
           user.lastName?.toLowerCase().includes(lowerQuery) ||
           user.email?.toLowerCase().includes(lowerQuery)
       );
+    }
+
+    // Filter by tab selection
+    if (sanityOnly) {
+      filteredUsers = filteredUsers.filter((user) => user.inSanity);
+    } else if (clerkOnly) {
+      filteredUsers = filteredUsers.filter((user) => !user.inSanity);
     }
 
     // Apply pagination
@@ -164,6 +212,7 @@ export async function GET(request: NextRequest) {
       sanityUsersCount: sanityUsers.length,
       activeUsersCount: sanityUsers.filter((u: SanityUser) => u.isActive)
         .length,
+      clerkOnlyCount: allUsers.filter((u) => !u.inSanity).length,
     });
   } catch (error) {
     console.error("Error fetching combined users:", error);

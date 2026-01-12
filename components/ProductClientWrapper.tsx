@@ -15,7 +15,7 @@ export const ProductAnimationWrapper = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-b from-white to-gray-50/50 min-h-screen"
+      className="bg-linear-to-b from-white to-gray-50/50 min-h-screen"
     >
       {children}
     </motion.div>

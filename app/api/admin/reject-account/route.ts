@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { userId, type, reason } = body;
 
-    if (!userId || !type || !reason?.trim()) {
+    if (!userId || !type) {
       return NextResponse.json(
         { success: false, message: "Missing required fields" },
         { status: 400 }
@@ -57,8 +57,11 @@ export async function POST(request: NextRequest) {
     const updateData: Record<string, string> = {
       [`${type}Status`]: "rejected",
       [`${type}RejectedAt`]: new Date().toISOString(),
-      rejectionReason: reason.trim(),
     };
+
+    if (reason && reason.trim()) {
+      updateData.rejectionReason = reason.trim();
+    }
 
     await backendClient.patch(userId).set(updateData).commit();
 

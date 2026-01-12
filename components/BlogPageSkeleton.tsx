@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const BlogPageSkeleton = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-shop_light_bg to-white">
+    <div className="min-h-screen bg-linear-to-b from-shop_light_bg to-white">
       {/* Breadcrumb Skeleton */}
       <Container className="pt-6">
         <div className="flex items-center space-x-2">
@@ -16,7 +16,7 @@ const BlogPageSkeleton = () => {
 
       {/* Hero Section Skeleton */}
       <Container className="py-8 sm:py-12">
-        <Card className="bg-gradient-to-r from-gray-300 to-gray-400 border-0 shadow-xl">
+        <Card className="bg-linear-to-r from-gray-300 to-gray-400 border-0 shadow-xl">
           <CardContent className="p-6 sm:p-8 lg:p-12 text-center">
             <div className="max-w-3xl mx-auto">
               {/* Badge and Icon */}
@@ -39,9 +39,8 @@ const BlogPageSkeleton = () => {
                 {[1, 2, 3].map((item, index) => (
                   <div
                     key={item}
-                    className={`bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 ${
-                      index === 2 ? "col-span-2 sm:col-span-1" : ""
-                    }`}
+                    className={`bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 ${index === 2 ? "col-span-2 sm:col-span-1" : ""
+                      }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <Skeleton className="w-4 h-4" />
@@ -72,15 +71,13 @@ const BlogPageSkeleton = () => {
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
             <Card
               key={item}
-              className={`overflow-hidden border-0 shadow-lg ${
-                index === 0 ? "md:col-span-2 lg:col-span-2" : ""
-              }`}
+              className={`overflow-hidden border-0 shadow-lg ${index === 0 ? "md:col-span-2 lg:col-span-2" : ""
+                }`}
             >
               {/* Image Skeleton */}
               <Skeleton
-                className={`w-full ${
-                  index === 0 ? "h-64 md:h-80" : "h-48 md:h-56"
-                }`}
+                className={`w-full ${index === 0 ? "h-64 md:h-80" : "h-48 md:h-56"
+                  }`}
               />
 
               <CardContent className="p-4 sm:p-6">
@@ -99,14 +96,12 @@ const BlogPageSkeleton = () => {
                 {/* Title */}
                 <div className="space-y-2 mb-3">
                   <Skeleton
-                    className={`h-5 w-full ${
-                      index === 0 ? "sm:h-6 md:h-7" : ""
-                    }`}
+                    className={`h-5 w-full ${index === 0 ? "sm:h-6 md:h-7" : ""
+                      }`}
                   />
                   <Skeleton
-                    className={`h-5 w-3/4 ${
-                      index === 0 ? "sm:h-6 md:h-7" : ""
-                    }`}
+                    className={`h-5 w-3/4 ${index === 0 ? "sm:h-6 md:h-7" : ""
+                      }`}
                   />
                 </div>
 
@@ -135,7 +130,7 @@ const BlogPageSkeleton = () => {
 
       {/* Newsletter Section Skeleton */}
       <Container className="py-8 sm:py-12">
-        <Card className="bg-gradient-to-r from-gray-200 to-gray-300 border-0">
+        <Card className="bg-linear-to-r from-gray-200 to-gray-300 border-0">
           <CardContent className="p-6 sm:p-8 lg:p-12 text-center">
             <div className="max-w-2xl mx-auto">
               <Skeleton className="w-12 h-12 mx-auto mb-4" />

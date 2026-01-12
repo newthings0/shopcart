@@ -300,15 +300,15 @@ export default function UserDashboardPage() {
           (!userProfile.isActive &&
             userProfile.premiumStatus !== "pending" &&
             userProfile.premiumStatus !== "rejected")) && (
-          <PremiumBanner
-            onRegister={handlePremiumRegister}
-            onDismiss={() => {}}
-          />
-        )}
+            <PremiumBanner
+              onRegister={handlePremiumRegister}
+              onDismiss={() => { }}
+            />
+          )}
 
         {/* Premium Application Status */}
         {userProfile && userProfile.premiumStatus === "pending" && (
-          <div className="mb-6 p-6 bg-gradient-to-r from-amber-50 to-yellow-50 border-l-4 border-amber-400 rounded-lg shadow-sm">
+          <div className="mb-6 p-6 bg-linear-to-r from-amber-50 to-yellow-50 border-l-4 border-amber-400 rounded-lg shadow-sm">
             <div className="flex items-start gap-4">
               <div className="shrink-0">
                 <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
@@ -404,9 +404,9 @@ export default function UserDashboardPage() {
           userProfile.isActive &&
           userProfile.premiumStatus === "active" &&
           !userProfile.isBusiness && (
-            <div className="mb-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-400 rounded-lg shadow-sm">
+            <div className="mb-6 p-6 bg-linear-to-r from-green-50 to-emerald-50 border-l-4 border-green-400 rounded-lg shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                   </div>
@@ -497,9 +497,9 @@ export default function UserDashboardPage() {
 
         {/* Business Application Status */}
         {userProfile && userProfile.businessStatus === "pending" && (
-          <div className="mb-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg shadow-sm">
+          <div className="mb-6 p-6 bg-linear-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg shadow-sm">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                   <Clock className="h-5 w-5 text-blue-600 animate-pulse" />
                 </div>
@@ -554,9 +554,9 @@ export default function UserDashboardPage() {
         {userProfile &&
           userProfile.isBusiness &&
           userProfile.businessStatus === "active" && (
-            <div className="mb-6 p-6 bg-gradient-to-r from-emerald-50 to-green-50 border-l-4 border-emerald-400 rounded-lg shadow-sm">
+            <div className="mb-6 p-6 bg-linear-to-r from-emerald-50 to-green-50 border-l-4 border-emerald-400 rounded-lg shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
                     <CheckCircle className="h-5 w-5 text-emerald-600" />
                   </div>
@@ -640,7 +640,7 @@ export default function UserDashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+        <Card className="bg-linear-to-br from-blue-500 to-blue-600 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
             <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
             <Package className="h-5 w-5" />
@@ -651,7 +651,7 @@ export default function UserDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+        <Card className="bg-linear-to-br from-purple-500 to-purple-600 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
             <CardTitle className="text-sm font-medium">Notifications</CardTitle>
             <Bell className="h-5 w-5" />
@@ -666,7 +666,7 @@ export default function UserDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+        <Card className="bg-linear-to-br from-red-500 to-red-600 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
             <CardTitle className="text-sm font-medium">Wishlist</CardTitle>
             <Heart className="h-5 w-5" />
@@ -736,7 +736,7 @@ export default function UserDashboardPage() {
                 {recentActivity.slice(0, 5).map((activity, index) => (
                   <div key={activity.id}>
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 mt-0.5">
+                      <div className="shrink-0 mt-0.5">
                         {getActivityIcon(activity.type)}
                       </div>
                       <div className="flex-1 min-w-0">

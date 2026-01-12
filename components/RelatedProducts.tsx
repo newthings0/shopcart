@@ -58,7 +58,7 @@ const RelatedProducts = memo(({ relatedProducts }: RelatedProductsProps) => {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                    <div className="w-full h-full bg-linear-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                       <span className="text-gray-500 text-sm">
                         Product Image
                       </span>
@@ -105,11 +105,10 @@ const RelatedProducts = memo(({ relatedProducts }: RelatedProductsProps) => {
                         <StarIcon
                           key={index}
                           size={12}
-                          className={`${
-                            index < 4
+                          className={`${index < 4
                               ? "text-shop_light_green fill-shop_light_green"
                               : "text-gray-300"
-                          }`}
+                            }`}
                         />
                       ))}
                     </div>

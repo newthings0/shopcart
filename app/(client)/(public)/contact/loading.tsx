@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react";
 
 const ContactLoading = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_bg to-white">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_bg to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
         {/* Breadcrumb Skeleton */}
         <div className="mb-8">

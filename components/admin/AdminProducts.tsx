@@ -99,8 +99,7 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
       try {
         const categoryParam = productCategory === "all" ? "" : productCategory;
         const data = await safeApiCall(
-          `/api/admin/products?limit=${limit}&offset=${
-            page * limit
+          `/api/admin/products?limit=${limit}&offset=${page * limit
           }&category=${categoryParam}&search=${debouncedSearchTerm}`
         );
         setProducts(data.products);
@@ -292,7 +291,7 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                           <TableCell>
                             <div className="flex items-center gap-3">
                               {/* Product Image */}
-                              <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                              <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 shrink-0">
                                 {product.images && product.images[0] ? (
                                   <Image
                                     src={urlFor(product.images[0])
@@ -383,7 +382,7 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                   <div className="p-4 space-y-4">
                     {/* Product Header */}
                     <div className="flex items-start gap-3">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 shrink-0">
                         {product.images && product.images[0] ? (
                           <Image
                             src={urlFor(product.images[0])
@@ -541,9 +540,8 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                             .width(400)
                             .height(400)
                             .url()}
-                          alt={`${selectedProduct.name} - Image ${
-                            currentImageIndex + 1
-                          }`}
+                          alt={`${selectedProduct.name} - Image ${currentImageIndex + 1
+                            }`}
                           width={400}
                           height={400}
                           className="w-full h-full object-cover"
@@ -585,17 +583,15 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                             <button
                               key={image._key || index}
                               onClick={() => goToImage(index)}
-                              className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                                index === currentImageIndex
+                              className={`shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${index === currentImageIndex
                                   ? "border-blue-500 shadow-md"
                                   : "border-gray-200 hover:border-gray-300"
-                              }`}
+                                }`}
                             >
                               <Image
                                 src={urlFor(image).width(64).height(64).url()}
-                                alt={`${selectedProduct.name} - Thumbnail ${
-                                  index + 1
-                                }`}
+                                alt={`${selectedProduct.name} - Thumbnail ${index + 1
+                                  }`}
                                 width={64}
                                 height={64}
                                 className="w-full h-full object-cover"
@@ -631,7 +627,7 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                 </h4>
                 <div className="grid gap-4 bg-gray-50 p-4 rounded-lg">
                   <div className="flex justify-between items-start">
-                    <span className="text-sm text-gray-600 min-w-[80px]">
+                    <span className="text-sm text-gray-600 min-w-20">
                       Product ID:
                     </span>
                     <span className="text-sm font-mono bg-white px-3 py-1 rounded border text-right break-all ml-2">
@@ -645,7 +641,7 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                     </span>
                   </div>
                   <div className="flex justify-between items-start">
-                    <span className="text-sm text-gray-600 min-w-[80px]">
+                    <span className="text-sm text-gray-600 min-w-20">
                       Slug:
                     </span>
                     <span className="text-sm font-mono bg-white px-3 py-1 rounded border text-right break-all ml-2">
@@ -774,7 +770,7 @@ const AdminProducts: React.FC<AdminProductsProps> = ({
                       className="px-3 py-1"
                     >
                       {selectedProduct.featured ||
-                      selectedProduct.isFeatured ? (
+                        selectedProduct.isFeatured ? (
                         <>
                           <Star className="w-3 h-3 mr-1 fill-current" />
                           Featured

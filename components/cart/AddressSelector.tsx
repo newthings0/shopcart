@@ -12,7 +12,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { MapPin, Plus, List } from "lucide-react";
-import { AddAddressSidebar } from "./AddAddressSidebar";
+import AddressEditSidebar from "@/components/profile/AddressEditSidebar";
 import { AddressSelectorSkeleton } from "./CartSkeleton";
 import { AllAddressesSidebar } from "./AllAddressesSidebar";
 
@@ -30,14 +30,15 @@ interface Address {
 
 interface AddressSelectorProps {
   userEmail: string;
+  userId: string;
   addresses: Address[];
   selectedAddress: Address | null;
   onAddressSelect: (address: Address) => void;
   onAddressesRefresh?: () => Promise<void>;
 }
-
 export function AddressSelector({
   userEmail,
+  userId,
   addresses,
   selectedAddress,
   onAddressSelect,
@@ -49,8 +50,34 @@ export function AddressSelector({
   const [isLoading, setIsLoading] = useState(false);
 
   const MAX_VISIBLE_ADDRESSES = 3;
+
+  // Sort addresses to show selected or default address first
+  const sortedAddresses = React.useMemo(() => {
+    const sorted = [...addresses];
+
+    // If there's a selected address, move it to the top
+    if (selectedAddress) {
+      const selectedIndex = sorted.findIndex(
+        (addr) => addr._id === selectedAddress._id
+      );
+      if (selectedIndex > 0) {
+        const [selected] = sorted.splice(selectedIndex, 1);
+        sorted.unshift(selected);
+      }
+    } else {
+      // If no selected address, move default address to the top
+      const defaultIndex = sorted.findIndex((addr) => addr.default);
+      if (defaultIndex > 0) {
+        const [defaultAddr] = sorted.splice(defaultIndex, 1);
+        sorted.unshift(defaultAddr);
+      }
+    }
+
+    return sorted;
+  }, [addresses, selectedAddress]);
+
   const hasMoreAddresses = addresses.length > MAX_VISIBLE_ADDRESSES;
-  const visibleAddresses = addresses.slice(0, MAX_VISIBLE_ADDRESSES);
+  const visibleAddresses = sortedAddresses.slice(0, MAX_VISIBLE_ADDRESSES);
 
   const handleAddressAdded = async () => {
     if (onAddressesRefresh) {
@@ -81,16 +108,16 @@ export function AddressSelector({
             <p className="text-muted-foreground mb-4">No saved addresses yet</p>
             <Button onClick={() => setIsSidebarOpen(true)} className="w-full">
               <Plus className="w-4 h-4 mr-2" />
-              Add Your First Address
+              Add First Address
             </Button>
           </div>
 
-          <AddAddressSidebar
-            userEmail={userEmail}
+          <AddressEditSidebar
             isOpen={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
-            onAddressAdded={handleAddressAdded}
-            isFirstAddress={true}
+            address={null}
+            userId={userId}
+            onAddressChange={handleAddressAdded}
           />
         </CardContent>
       </Card>
@@ -161,15 +188,15 @@ export function AddressSelector({
           className="w-full"
           onClick={() => setIsSidebarOpen(true)}
         >
-          <Plus className="w-4 h-4 mr-2" />
           Add New Address
         </Button>
 
-        <AddAddressSidebar
-          userEmail={userEmail}
+        <AddressEditSidebar
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
-          onAddressAdded={handleAddressAdded}
+          address={null}
+          userId={userId}
+          onAddressChange={handleAddressAdded}
         />
 
         <AllAddressesSidebar

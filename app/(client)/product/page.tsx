@@ -22,9 +22,9 @@ const ProductPage = async () => {
   ]);
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+    <div className="bg-linear-to-b from-gray-50 to-white min-h-screen">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-shop_dark_green to-shop_light_green">
+      <div className="bg-linear-to-r from-shop_dark_green to-shop_light_green">
         <Container>
           <div className="py-16 text-white">
             <div className="mb-6">

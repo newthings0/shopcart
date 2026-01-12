@@ -119,7 +119,7 @@ const CategoryPageWrapper = ({ slug }: Props) => {
             <div className="flex items-start gap-4 mb-4">
               {/* Category Image */}
               {currentCategory?.image && (
-                <div className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-shop_light_pink to-shop_light_bg rounded-xl overflow-hidden">
+                <div className="shrink-0 w-16 h-16 lg:w-20 lg:h-20 bg-linear-to-br from-shop_light_pink to-shop_light_bg rounded-xl overflow-hidden">
                   <Image
                     src={urlFor(currentCategory.image).url()}
                     alt={categoryTitle}
@@ -230,7 +230,7 @@ const CategoryPageWrapper = ({ slug }: Props) => {
                 className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 hover:border-shop_light_green p-4 text-center"
               >
                 {/* Category Image */}
-                <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-shop_light_pink to-shop_light_bg rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 mx-auto mb-3 bg-linear-to-br from-shop_light_pink to-shop_light_bg rounded-lg flex items-center justify-center">
                   {category.image ? (
                     <Image
                       src={urlFor(category.image).url()}
@@ -255,7 +255,7 @@ const CategoryPageWrapper = ({ slug }: Props) => {
       )}
 
       {/* Call to Action Section */}
-      <div className="mt-12 bg-gradient-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 lg:p-8 border border-shop_light_green/20 text-center">
+      <div className="mt-12 bg-linear-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 lg:p-8 border border-shop_light_green/20 text-center">
         <div className="max-w-2xl mx-auto">
           <h3 className="text-xl lg:text-2xl font-bold text-shop_dark_green mb-3">
             Discover More Amazing Products

@@ -75,7 +75,7 @@ const AdminSidebar = ({ currentPath }: AdminSidebarProps) => {
     <div className="bg-white rounded-2xl shadow-xl border border-shop_light_green/10 p-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8 pb-6 border-b border-shop_light_green/20">
-        <div className="p-2 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-xl">
+        <div className="p-2 bg-linear-to-br from-shop_light_green to-shop_dark_green rounded-xl">
           <Shield className="w-6 h-6 text-white" />
         </div>
         <div>
@@ -97,7 +97,7 @@ const AdminSidebar = ({ currentPath }: AdminSidebarProps) => {
               className={cn(
                 "flex items-center gap-3 p-4 rounded-xl transition-all duration-200 group",
                 isActive
-                  ? "bg-gradient-to-r from-shop_light_green to-shop_dark_green text-white shadow-lg"
+                  ? "bg-linear-to-r from-shop_light_green to-shop_dark_green text-white shadow-lg"
                   : "hover:bg-shop_light_bg hover:shadow-md text-dark-color"
               )}
             >

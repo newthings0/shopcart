@@ -66,7 +66,7 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="relative bg-gradient-to-br from-shop_light_bg via-shop_light_pink to-shop_light_blue p-6 lg:p-8">
+              <div className="relative bg-linear-to-br from-shop_light_bg via-shop_light_pink to-shop_light_blue p-6 lg:p-8">
                 <button
                   onClick={onClose}
                   className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-dark-color hover:text-shop_dark_blue hoverEffect shadow-lg"
@@ -100,7 +100,7 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-dark-color mb-4 flex items-center gap-2">
                     <div
-                      className={`w-1.5 h-6 rounded-full bg-gradient-to-b ${feature.color}`}
+                      className={`w-1.5 h-6 rounded-full bg-linear-to-b ${feature.color}`}
                     ></div>
                     How It Works
                   </h3>
@@ -111,10 +111,10 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-3 p-4 bg-gradient-to-r from-shop_light_bg to-white rounded-xl border border-shop_light_blue/20 hover:border-shop_light_blue hoverEffect"
+                        className="flex items-start gap-3 p-4 bg-linear-to-r from-shop_light_bg to-white rounded-xl border border-shop_light_blue/20 hover:border-shop_light_blue hoverEffect"
                       >
                         <div
-                          className={`flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r ${feature.color} flex items-center justify-center mt-0.5`}
+                          className={`shrink-0 w-6 h-6 rounded-full bg-linear-to-r ${feature.color} flex items-center justify-center mt-0.5`}
                         >
                           <span className="text-white text-xs font-bold">
                             {index + 1}
@@ -132,7 +132,7 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
                 <div>
                   <h3 className="text-xl font-bold text-dark-color mb-4 flex items-center gap-2">
                     <div
-                      className={`w-1.5 h-6 rounded-full bg-gradient-to-b ${feature.color}`}
+                      className={`w-1.5 h-6 rounded-full bg-linear-to-b ${feature.color}`}
                     ></div>
                     Benefits For You
                   </h3>
@@ -146,7 +146,7 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
                         className="flex items-start gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-shop_light_blue hover:shadow-md hoverEffect"
                       >
                         <Check
-                          className={`flex-shrink-0 w-5 h-5 ${feature.iconColor} mt-0.5`}
+                          className={`shrink-0 w-5 h-5 ${feature.iconColor} mt-0.5`}
                         />
                         <p className="text-dark-text text-sm leading-relaxed">
                           {benefit}
@@ -158,7 +158,7 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
               </div>
 
               {/* Footer */}
-              <div className="bg-gradient-to-r from-shop_light_bg to-shop_light_pink border-t border-shop_light_blue/20 p-2">
+              <div className="bg-linear-to-r from-shop_light_bg to-shop_light_pink border-t border-shop_light_blue/20 p-2">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-sm text-light-color">
                     <div className="w-2 h-2 bg-shop_light_green rounded-full animate-pulse"></div>
@@ -167,7 +167,7 @@ const FeatureModal = ({ isOpen, onClose, feature }: FeatureModalProps) => {
 
                   <button
                     onClick={onClose}
-                    className="px-6 py-2 text-sm bg-gradient-to-r from-shop_btn_dark_green to-shop_orange hover:from-shop_orange hover:to-shop_btn_dark_green text-white/80 hover:text-white font-semibold rounded-full hover:shadow-lg hoverEffect"
+                    className="px-6 py-2 text-sm bg-linear-to-r from-shop_btn_dark_green to-shop_orange hover:from-shop_orange hover:to-shop_btn_dark_green text-white/80 hover:text-white font-semibold rounded-full hover:shadow-lg hoverEffect"
                   >
                     Got it, thanks!
                   </button>

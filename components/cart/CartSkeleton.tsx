@@ -7,7 +7,7 @@ export function CartItemSkeleton() {
     <div className="border rounded-lg p-4">
       <div className="flex gap-4">
         {/* Product Image Skeleton */}
-        <div className="w-24 h-24 flex-shrink-0">
+        <div className="w-24 h-24 shrink-0">
           <Skeleton className="w-full h-full rounded-md" />
         </div>
 

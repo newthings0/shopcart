@@ -1,6 +1,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { USER_BY_CLERK_ID_QUERY } from "@/sanity/queries/userQueries";
 import ProfileClient from "@/components/profile/ProfileClient";
 
@@ -66,6 +67,35 @@ export default async function ProfilePage() {
     console.error("Error fetching user from Sanity:", error);
   }
 
+  // Fetch addresses separately by email
+  let userAddresses: SanityUser["addresses"] = [];
+  const userEmail = clerkUser.primaryEmailAddress?.emailAddress;
+  if (userEmail) {
+    try {
+      const addressQuery = `*[_type == "address" && email == $email] | order(default desc, createdAt desc) {
+        _id,
+        name,
+        address,
+        city,
+        state,
+        zip,
+        country,
+        default,
+        type,
+        createdAt,
+        phone
+      }`;
+      userAddresses = await client.fetch(addressQuery, { email: userEmail });
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    }
+  }
+
+  // Combine user data with addresses
+  if (sanityUser) {
+    sanityUser.addresses = userAddresses;
+  }
+
   // Combine Clerk and Sanity data - serialize Clerk objects to plain data
   const userData = {
     clerk: {
@@ -77,9 +107,9 @@ export default async function ProfilePage() {
         emailAddress: email.emailAddress,
         verification: email.verification
           ? {
-              status: email.verification.status,
-              strategy: email.verification.strategy,
-            }
+            status: email.verification.status,
+            strategy: email.verification.strategy,
+          }
           : null,
       })),
       imageUrl: clerkUser.imageUrl,

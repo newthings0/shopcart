@@ -9,7 +9,6 @@ import { Product } from "@/sanity.types";
 import PriceView from "../PriceView";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "./Logo";
 import { useOutsideClick } from "@/hooks";
 
 const SearchBar = () => {
@@ -246,8 +245,8 @@ const SearchBar = () => {
                               src={urlFor(product?.images[0]).url()}
                               alt={product.name || "Product"}
                               className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 ${product?.stock === 0
-                                  ? "opacity-50 grayscale"
-                                  : ""
+                                ? "opacity-50 grayscale"
+                                : ""
                                 }`}
                             />
                           )}
@@ -317,50 +316,152 @@ const SearchBar = () => {
                   ))}
                 </div>
               ) : (
-                <div className="py-12">
+                <div className="py-8">
                   {search === "" ? (
-                    <div className="text-center">
-                      <div className="bg-gray-50 rounded-2xl p-8 mx-6">
-                        <div className="flex items-center justify-center mb-4">
-                          <div className="bg-shop_dark_green/10 p-3 rounded-full">
-                            <Search className="w-8 h-8 text-shop_dark_green" />
+                    <div className="px-6">
+                      <div className="mb-6 text-center">
+                        <div className="flex items-center justify-center mb-3">
+                          <div className="bg-linear-to-br from-shop_dark_green to-shop_light_green p-3 rounded-full">
+                            <Search className="w-6 h-6 text-white" />
                           </div>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">
                           Discover Amazing Products
                         </h3>
-                        <div className="text-gray-600 mb-6">
-                          <p>Search and explore thousands of products from</p>{" "}
-                          <Logo className="inline text-base font-bold text-shop_dark_green" />
-                        </div>
+                        <p className="text-gray-600">
+                          Search and explore thousands of products
+                        </p>
+                      </div>
 
-                        {/* Featured Products Suggestions */}
-                        {featuredProduct?.length > 0 && (
-                          <div>
-                            <h4 className="text-sm font-semibold text-gray-700 mb-3 text-left">
-                              Popular Searches:
+                      {/* Popular Search Products - Full Width Grid */}
+                      {featuredProduct?.length > 0 && (
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2">
+                            <div className="h-px flex-1 bg-linear-to-r from-transparent via-gray-300 to-transparent" />
+                            <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wide">
+                              Popular Products
                             </h4>
+                            <div className="h-px flex-1 bg-linear-to-r from-transparent via-gray-300 to-transparent" />
+                          </div>
+
+                          {/* Product Grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {featuredProduct
+                              .slice(0, 6)
+                              .map((item: Product) => (
+                                <Link
+                                  key={item?._id}
+                                  href={`/product/${item?.slug?.current}`}
+                                  onClick={() => setShowSearch(false)}
+                                  className="group bg-linear-to-br from-gray-50 to-white hover:from-shop_light_green/5 hover:to-shop_dark_green/5 border border-gray-200 hover:border-shop_light_green rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                                >
+                                  <div className="flex gap-3">
+                                    {/* Product Image */}
+                                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border border-gray-200 group-hover:border-shop_light_green transition-colors duration-300">
+                                      {item?.images && (
+                                        <Image
+                                          width={80}
+                                          height={80}
+                                          src={urlFor(item?.images[0]).url()}
+                                          alt={item.name || "Product"}
+                                          className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                                        />
+                                      )}
+                                      {item?.discount && item.discount > 0 && (
+                                        <div className="absolute -top-1 -right-1 bg-linear-to-r from-red-500 to-red-600 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-md">
+                                          -{item.discount}%
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Product Info */}
+                                    <div className="flex-1 min-w-0 flex flex-col justify-between">
+                                      <div>
+                                        <h5 className="font-semibold text-sm text-gray-800 group-hover:text-shop_dark_green line-clamp-2 mb-1 transition-colors duration-200">
+                                          {item?.name}
+                                        </h5>
+                                        <PriceView
+                                          price={item?.price}
+                                          discount={item?.discount}
+                                          className="text-xs"
+                                        />
+                                      </div>
+
+                                      {/* Status Badges */}
+                                      <div className="flex flex-wrap gap-1 mt-2">
+                                        {item?.status === "hot" && (
+                                          <span className="inline-flex items-center gap-0.5 bg-red-100 text-red-700 text-xs px-1.5 py-0.5 rounded-full font-medium">
+                                            <TrendingUp className="w-2.5 h-2.5" />
+                                            Hot
+                                          </span>
+                                        )}
+                                        {item?.status === "new" && (
+                                          <span className="inline-flex items-center gap-0.5 bg-blue-100 text-blue-700 text-xs px-1.5 py-0.5 rounded-full font-medium">
+                                            <Clock className="w-2.5 h-2.5" />
+                                            New
+                                          </span>
+                                        )}
+                                        {item?.isFeatured && (
+                                          <span className="inline-flex items-center gap-0.5 bg-yellow-100 text-yellow-700 text-xs px-1.5 py-0.5 rounded-full font-medium">
+                                            <Star className="w-2.5 h-2.5" />
+                                            Featured
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* Hover Arrow Indicator */}
+                                  <div className="mt-3 pt-3 border-t border-gray-100 group-hover:border-shop_light_green/30 transition-colors duration-200">
+                                    <div className="flex items-center justify-between text-xs">
+                                      <span className="text-gray-500 group-hover:text-shop_dark_green font-medium transition-colors duration-200">
+                                        View Details
+                                      </span>
+                                      <svg
+                                        className="w-4 h-4 text-gray-400 group-hover:text-shop_dark_green group-hover:translate-x-1 transition-all duration-200"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M9 5l7 7-7 7"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </Link>
+                              ))}
+                          </div>
+
+                          {/* Quick Search Chips */}
+                          <div className="pt-4 border-t border-gray-200">
+                            <p className="text-xs text-gray-500 mb-2">
+                              Quick search:
+                            </p>
                             <div className="flex flex-wrap gap-2">
                               {featuredProduct
-                                .slice(0, 6)
+                                .slice(0, 8)
                                 .map((item: Product) => (
                                   <button
                                     key={item?._id}
                                     onClick={() =>
                                       setSearch(item?.name as string)
                                     }
-                                    className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-shop_light_green hover:bg-shop_light_green/5 px-3 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-shop_dark_green transition-all duration-200"
+                                    className="inline-flex items-center gap-1.5 bg-white hover:bg-shop_dark_green border border-gray-200 hover:border-shop_dark_green px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 hover:text-white transition-all duration-200 shadow-sm hover:shadow-md"
                                   >
                                     <Search className="w-3 h-3" />
-                                    <span className="line-clamp-1">
+                                    <span className="line-clamp-1 max-w-[150px]">
                                       {item?.name}
                                     </span>
                                   </button>
                                 ))}
                             </div>
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="text-center py-8">

@@ -319,8 +319,8 @@ const FAQPage = () => {
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
                       className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 ${activeCategory === category.id
-                          ? "bg-shop_light_green text-white shadow-md"
-                          : "hover:bg-shop_light_green/10 text-gray-700 hover:text-shop_dark_green"
+                        ? "bg-shop_light_green text-white shadow-md"
+                        : "hover:bg-shop_light_green/10 text-gray-700 hover:text-shop_dark_green"
                         }`}
                     >
                       <div className="flex items-center gap-3">
@@ -329,8 +329,8 @@ const FAQPage = () => {
                       </div>
                       <span
                         className={`text-xs px-2 py-1 rounded-full ${activeCategory === category.id
-                            ? "bg-white/20"
-                            : "bg-gray-200"
+                          ? "bg-white/20"
+                          : "bg-gray-200"
                           }`}
                       >
                         {category.count}

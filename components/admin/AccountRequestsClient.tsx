@@ -37,8 +37,12 @@ import {
   Calendar,
   AlertTriangle,
   RefreshCw,
+  X,
+  Trash2,
+  Check,
 } from "lucide-react";
 import { toast } from "sonner";
+import { Checkbox } from "@/components/ui/checkbox";
 import AccountRequestsOverview from "@/components/admin/AccountRequestsOverview";
 
 interface UserRequest {
@@ -104,7 +108,7 @@ const ApprovedAccountsTable = ({
 
   return (
     <Card className="overflow-hidden">
-      <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-100 pb-4">
+      <CardHeader className="bg-linear-to-r from-green-50 to-emerald-100 pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <CheckCircle className="w-5 h-5 text-green-600" />
           Approved Accounts ({allApprovedAccounts.length})
@@ -140,11 +144,10 @@ const ApprovedAccountsTable = ({
                     <TableCell className="py-4">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`p-2 rounded-lg ${
-                            account.accountType === "premium"
-                              ? "bg-amber-100"
-                              : "bg-blue-100"
-                          }`}
+                          className={`p-2 rounded-lg ${account.accountType === "premium"
+                            ? "bg-amber-100"
+                            : "bg-blue-100"
+                            }`}
                         >
                           {account.accountType === "premium" ? (
                             <Crown className="w-4 h-4 text-amber-600" />
@@ -244,11 +247,10 @@ const ApprovedAccountsTable = ({
                 <CardContent className="p-4 space-y-3">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`p-2 rounded-lg ${
-                        account.accountType === "premium"
-                          ? "bg-amber-100"
-                          : "bg-blue-100"
-                      }`}
+                      className={`p-2 rounded-lg ${account.accountType === "premium"
+                        ? "bg-amber-100"
+                        : "bg-blue-100"
+                        }`}
                     >
                       {account.accountType === "premium" ? (
                         <Crown className="w-4 h-4 text-amber-600" />
@@ -261,7 +263,7 @@ const ApprovedAccountsTable = ({
                         {account.firstName} {account.lastName}
                       </div>
                       <div className="text-sm text-gray-600 flex items-center gap-1 truncate">
-                        <Mail className="w-3 h-3 flex-shrink-0" />
+                        <Mail className="w-3 h-3 shrink-0" />
                         <span className="truncate">{account.email}</span>
                       </div>
                     </div>
@@ -336,6 +338,9 @@ const RequestTable = ({
   setRejectDialog,
   actionLoading,
   getStatusBadge,
+  selectedRequests,
+  toggleRequestSelection,
+  selectAllRequests,
 }: {
   users: UserRequest[];
   type: "premium" | "business";
@@ -351,6 +356,9 @@ const RequestTable = ({
     status: string,
     type: "premium" | "business"
   ) => React.ReactNode;
+  selectedRequests: string[];
+  toggleRequestSelection: (userId: string) => void;
+  selectAllRequests: (userIds: string[]) => void;
 }) => {
   if (users.length === 0) {
     const Icon = type === "premium" ? Crown : Building2;
@@ -369,9 +377,19 @@ const RequestTable = ({
     );
   }
 
+  const pendingUsers = users.filter((u) =>
+    type === "premium"
+      ? u.premiumStatus === "pending"
+      : u.businessStatus === "pending"
+  );
+  const pendingUserIds = pendingUsers.map((u) => u._id);
+  const allPendingSelected =
+    pendingUserIds.length > 0 &&
+    pendingUserIds.every((id) => selectedRequests.includes(id));
+
   return (
     <Card className="overflow-hidden">
-      <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 pb-4">
+      <CardHeader className="bg-linear-to-r from-gray-50 to-gray-100 pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           {type === "premium" ? (
             <Crown className="w-5 h-5 text-amber-600" />
@@ -387,6 +405,13 @@ const RequestTable = ({
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-50/50">
+                <TableHead className="w-12">
+                  <Checkbox
+                    checked={allPendingSelected}
+                    onCheckedChange={() => selectAllRequests(pendingUserIds)}
+                    disabled={pendingUserIds.length === 0}
+                  />
+                </TableHead>
                 <TableHead className="font-semibold">User</TableHead>
                 <TableHead className="font-semibold">Applied Date</TableHead>
                 <TableHead className="font-semibold">Status</TableHead>
@@ -410,11 +435,17 @@ const RequestTable = ({
                     className="hover:bg-gray-50/50 transition-colors"
                   >
                     <TableCell className="py-4">
+                      <Checkbox
+                        checked={selectedRequests.includes(user._id)}
+                        onCheckedChange={() => toggleRequestSelection(user._id)}
+                        disabled={status !== "pending"}
+                      />
+                    </TableCell>
+                    <TableCell className="py-4">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`p-2 rounded-lg ${
-                            type === "premium" ? "bg-amber-100" : "bg-blue-100"
-                          }`}
+                          className={`p-2 rounded-lg ${type === "premium" ? "bg-amber-100" : "bg-blue-100"
+                            }`}
                         >
                           {type === "premium" ? (
                             <Crown className="w-4 h-4 text-amber-600" />
@@ -450,7 +481,7 @@ const RequestTable = ({
                       {status === "rejected" && user.rejectionReason && (
                         <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-xs max-w-xs">
                           <div className="flex items-start gap-1">
-                            <AlertTriangle className="w-3 h-3 text-red-500 mt-0.5 flex-shrink-0" />
+                            <AlertTriangle className="w-3 h-3 text-red-500 mt-0.5 shrink-0" />
                             <span className="text-red-700 line-clamp-2">
                               {user.rejectionReason}
                             </span>
@@ -517,9 +548,8 @@ const RequestTable = ({
                 <CardContent className="p-4 space-y-3">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`p-2 rounded-lg ${
-                        type === "premium" ? "bg-amber-100" : "bg-blue-100"
-                      }`}
+                      className={`p-2 rounded-lg ${type === "premium" ? "bg-amber-100" : "bg-blue-100"
+                        }`}
                     >
                       {type === "premium" ? (
                         <Crown className="w-4 h-4 text-amber-600" />
@@ -532,7 +562,7 @@ const RequestTable = ({
                         {user.firstName} {user.lastName}
                       </div>
                       <div className="text-sm text-gray-600 flex items-center gap-1 truncate">
-                        <Mail className="w-3 h-3 flex-shrink-0" />
+                        <Mail className="w-3 h-3 shrink-0" />
                         <span className="truncate">{user.email}</span>
                       </div>
                     </div>
@@ -549,7 +579,7 @@ const RequestTable = ({
                   {status === "rejected" && user.rejectionReason && (
                     <div className="p-2 bg-red-50 border border-red-200 rounded text-xs">
                       <div className="flex items-start gap-1">
-                        <AlertTriangle className="w-3 h-3 text-red-500 mt-0.5 flex-shrink-0" />
+                        <AlertTriangle className="w-3 h-3 text-red-500 mt-0.5 shrink-0" />
                         <span className="text-red-700">
                           {user.rejectionReason}
                         </span>
@@ -610,6 +640,16 @@ export default function AccountRequestsClient() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [selectedRequests, setSelectedRequests] = useState<string[]>([]);
+  const [bulkActionDialog, setBulkActionDialog] = useState<{
+    isOpen: boolean;
+    action: "approve" | "reject";
+    type: "premium" | "business";
+  }>({
+    isOpen: false,
+    action: "approve",
+    type: "premium",
+  });
   const [rejectDialog, setRejectDialog] = useState<{
     isOpen: boolean;
     userId: string;
@@ -634,6 +674,26 @@ export default function AccountRequestsClient() {
   });
   const [rejectReason, setRejectReason] = useState("");
   const [cancelReason, setCancelReason] = useState("");
+  const [bulkRejectReason, setBulkRejectReason] = useState("");
+
+  const toggleRequestSelection = (userId: string) => {
+    setSelectedRequests((prev) =>
+      prev.includes(userId)
+        ? prev.filter((id) => id !== userId)
+        : [...prev, userId]
+    );
+  };
+
+  const selectAllRequests = (userIds: string[]) => {
+    if (userIds.every((id) => selectedRequests.includes(id))) {
+      setSelectedRequests((prev) => prev.filter((id) => !userIds.includes(id)));
+    } else {
+      setSelectedRequests((prev) => [
+        ...prev.filter((id) => !userIds.includes(id)),
+        ...userIds,
+      ]);
+    }
+  };
 
   useEffect(() => {
     fetchRequests();
@@ -684,12 +744,9 @@ export default function AccountRequestsClient() {
       if (response.ok) {
         const data = await response.json();
         toast.success(data.message);
-        setTimeout(async () => {
-          setRefreshing(true);
-          toast.info("Updating account lists...", { duration: 1000 });
-          await fetchRequests();
-          setRefreshing(false);
-        }, 500);
+        setRefreshing(true);
+        await fetchRequests();
+        setRefreshing(false);
       } else {
         const error = await response.json();
         toast.error(error.message || "Failed to approve account");
@@ -703,11 +760,6 @@ export default function AccountRequestsClient() {
   };
 
   const handleReject = async () => {
-    if (!rejectReason.trim()) {
-      toast.error("Please provide a reason for rejection");
-      return;
-    }
-
     try {
       setActionLoading(rejectDialog.userId);
       const response = await fetch("/api/admin/reject-account", {
@@ -730,12 +782,9 @@ export default function AccountRequestsClient() {
           userEmail: "",
         });
         setRejectReason("");
-        setTimeout(async () => {
-          setRefreshing(true);
-          toast.info("Updating account lists...", { duration: 1000 });
-          await fetchRequests();
-          setRefreshing(false);
-        }, 500);
+        setRefreshing(true);
+        await fetchRequests();
+        setRefreshing(false);
       } else {
         const error = await response.json();
         toast.error(error.message || "Failed to reject account");
@@ -776,12 +825,9 @@ export default function AccountRequestsClient() {
           userEmail: "",
         });
         setCancelReason("");
-        setTimeout(async () => {
-          setRefreshing(true);
-          toast.info("Updating account lists...", { duration: 1000 });
-          await fetchRequests();
-          setRefreshing(false);
-        }, 500);
+        setRefreshing(true);
+        await fetchRequests();
+        setRefreshing(false);
       } else {
         const error = await response.json();
         toast.error(error.message || "Failed to cancel account");
@@ -789,6 +835,88 @@ export default function AccountRequestsClient() {
     } catch (error) {
       console.error("Error cancelling account:", error);
       toast.error("Failed to cancel account");
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleBulkApprove = async () => {
+    if (selectedRequests.length === 0) return;
+
+    try {
+      setActionLoading("bulk");
+      const response = await fetch("/api/admin/bulk-approve-accounts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userIds: selectedRequests,
+          type: bulkActionDialog.type,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        toast.success(
+          `Successfully approved ${selectedRequests.length} ${bulkActionDialog.type} request(s)`
+        );
+        setSelectedRequests([]);
+        setBulkActionDialog({
+          isOpen: false,
+          action: "approve",
+          type: "premium",
+        });
+        setRefreshing(true);
+        await fetchRequests();
+        setRefreshing(false);
+      } else {
+        const error = await response.json();
+        toast.error(error.message || "Failed to approve accounts");
+      }
+    } catch (error) {
+      console.error("Error bulk approving:", error);
+      toast.error("Failed to approve accounts");
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleBulkReject = async () => {
+    if (selectedRequests.length === 0) return;
+
+    try {
+      setActionLoading("bulk");
+      const response = await fetch("/api/admin/bulk-reject-accounts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userIds: selectedRequests,
+          type: bulkActionDialog.type,
+          reason: bulkRejectReason,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        toast.success(
+          `Successfully rejected ${selectedRequests.length} ${bulkActionDialog.type} request(s)`
+        );
+        setSelectedRequests([]);
+        setBulkRejectReason("");
+        setBulkActionDialog({
+          isOpen: false,
+          action: "reject",
+          type: "premium",
+        });
+        setRefreshing(true);
+        await fetchRequests();
+        setRefreshing(false);
+      } else {
+        const error = await response.json();
+        toast.error(error.message || "Failed to reject accounts");
+      }
+    } catch (error) {
+      console.error("Error bulk rejecting:", error);
+      toast.error("Failed to reject accounts");
     } finally {
       setActionLoading(null);
     }
@@ -913,9 +1041,8 @@ export default function AccountRequestsClient() {
           disabled={loading || refreshing}
         >
           <RefreshCw
-            className={`w-4 h-4 mr-2 ${
-              loading || refreshing ? "animate-spin" : ""
-            }`}
+            className={`w-4 h-4 mr-2 ${loading || refreshing ? "animate-spin" : ""
+              }`}
           />
           {refreshing ? "Updating..." : "Refresh"}
         </Button>
@@ -941,6 +1068,44 @@ export default function AccountRequestsClient() {
         </TabsList>
 
         <TabsContent value="premium" className="space-y-4">
+          {selectedRequests.length > 0 && (
+            <div className="flex items-center justify-between bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <span className="text-sm font-medium text-blue-900">
+                {selectedRequests.length} request
+                {selectedRequests.length > 1 ? "s" : ""} selected
+              </span>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() =>
+                    setBulkActionDialog({
+                      isOpen: true,
+                      action: "approve",
+                      type: "premium",
+                    })
+                  }
+                  size="sm"
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Approve Selected
+                </Button>
+                <Button
+                  onClick={() =>
+                    setBulkActionDialog({
+                      isOpen: true,
+                      action: "reject",
+                      type: "premium",
+                    })
+                  }
+                  size="sm"
+                  variant="destructive"
+                >
+                  <XCircle className="w-4 h-4 mr-1" />
+                  Reject Selected
+                </Button>
+              </div>
+            </div>
+          )}
           <RequestTable
             users={premiumRequests}
             type="premium"
@@ -948,10 +1113,51 @@ export default function AccountRequestsClient() {
             setRejectDialog={setRejectDialog}
             actionLoading={actionLoading}
             getStatusBadge={getStatusBadge}
+            selectedRequests={selectedRequests}
+            toggleRequestSelection={toggleRequestSelection}
+            selectAllRequests={selectAllRequests}
           />
         </TabsContent>
 
         <TabsContent value="business" className="space-y-4">
+          {selectedRequests.length > 0 && (
+            <div className="flex items-center justify-between bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <span className="text-sm font-medium text-blue-900">
+                {selectedRequests.length} request
+                {selectedRequests.length > 1 ? "s" : ""} selected
+              </span>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() =>
+                    setBulkActionDialog({
+                      isOpen: true,
+                      action: "approve",
+                      type: "business",
+                    })
+                  }
+                  size="sm"
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Approve Selected
+                </Button>
+                <Button
+                  onClick={() =>
+                    setBulkActionDialog({
+                      isOpen: true,
+                      action: "reject",
+                      type: "business",
+                    })
+                  }
+                  size="sm"
+                  variant="destructive"
+                >
+                  <XCircle className="w-4 h-4 mr-1" />
+                  Reject Selected
+                </Button>
+              </div>
+            </div>
+          )}
           <RequestTable
             users={businessRequests}
             type="business"
@@ -959,6 +1165,9 @@ export default function AccountRequestsClient() {
             setRejectDialog={setRejectDialog}
             actionLoading={actionLoading}
             getStatusBadge={getStatusBadge}
+            selectedRequests={selectedRequests}
+            toggleRequestSelection={toggleRequestSelection}
+            selectAllRequests={selectAllRequests}
           />
         </TabsContent>
 
@@ -986,56 +1195,85 @@ export default function AccountRequestsClient() {
           }
         }}
       >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              Reject {rejectDialog.type === "premium" ? "Premium" : "Business"}{" "}
-              Application
-            </DialogTitle>
-            <DialogDescription>
-              Please provide a reason for rejecting {rejectDialog.userEmail}
-              &apos;s {rejectDialog.type} account application. This reason will
-              be visible to the user.
-            </DialogDescription>
-          </DialogHeader>
+        <DialogPortal>
+          <DialogOverlay />
+          <DialogPrimitive.Content
+            className={cn(
+              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-md translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg"
+            )}
+          >
+            <VisuallyHidden.Root>
+              <DialogTitle>
+                Reject{" "}
+                {rejectDialog.type === "premium" ? "Premium" : "Business"}{" "}
+                Application
+              </DialogTitle>
+            </VisuallyHidden.Root>
+            <div className="text-center space-y-4">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-50 border-4 border-red-100">
+                <AlertTriangle className="h-8 w-8 text-red-600 animate-pulse" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-gray-900">
+                  Reject{" "}
+                  {rejectDialog.type === "premium" ? "Premium" : "Business"}{" "}
+                  Application
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Please provide a reason for rejecting {rejectDialog.userEmail}
+                  &apos;s {rejectDialog.type} account application. This reason
+                  will be visible to the user.
+                </p>
+              </div>
+            </div>
 
-          <div className="space-y-4">
-            <Textarea
-              placeholder="Enter rejection reason..."
-              value={rejectReason}
-              onChange={(e) => setRejectReason(e.target.value)}
-              rows={4}
-            />
-          </div>
+            <div className="space-y-4">
+              <Textarea
+                placeholder="Enter rejection reason..."
+                value={rejectReason}
+                onChange={(e) => setRejectReason(e.target.value)}
+                rows={4}
+                className="resize-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              />
+            </div>
 
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setRejectDialog({
-                  isOpen: false,
-                  userId: "",
-                  type: "premium",
-                  userEmail: "",
-                });
-                setRejectReason("");
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={handleReject}
-              disabled={
-                !rejectReason.trim() || actionLoading === rejectDialog.userId
-              }
-            >
-              {actionLoading === rejectDialog.userId
-                ? "Rejecting..."
-                : "Reject Application"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setRejectDialog({
+                    isOpen: false,
+                    userId: "",
+                    type: "premium",
+                    userEmail: "",
+                  });
+                  setRejectReason("");
+                }}
+                className="min-w-20"
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={handleReject}
+                disabled={actionLoading === rejectDialog.userId}
+                className="min-w-[120px] bg-red-600 hover:bg-red-700"
+              >
+                {actionLoading === rejectDialog.userId ? (
+                  <div className="flex items-center gap-2">
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    Rejecting...
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <X className="h-4 w-4" />
+                    Reject Application
+                  </div>
+                )}
+              </Button>
+            </div>
+          </DialogPrimitive.Content>
+        </DialogPortal>
       </Dialog>
 
       {/* Cancel Dialog */}
@@ -1108,7 +1346,7 @@ export default function AccountRequestsClient() {
                   });
                   setCancelReason("");
                 }}
-                className="min-w-[80px]"
+                className="min-w-20"
               >
                 Cancel
               </Button>
@@ -1129,6 +1367,150 @@ export default function AccountRequestsClient() {
                   <div className="flex items-center gap-2">
                     <XCircle className="h-4 w-4" />
                     Cancel Account
+                  </div>
+                )}
+              </Button>
+            </div>
+          </DialogPrimitive.Content>
+        </DialogPortal>
+      </Dialog>
+
+      {/* Bulk Action Dialog */}
+      <Dialog
+        open={bulkActionDialog.isOpen}
+        onOpenChange={(open) => {
+          if (!open && !actionLoading) {
+            setBulkActionDialog({
+              isOpen: false,
+              action: "approve",
+              type: "premium",
+            });
+            setRejectReason("");
+          }
+        }}
+      >
+        <DialogPortal>
+          <DialogOverlay />
+          <DialogPrimitive.Content
+            className={cn(
+              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-md translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg"
+            )}
+          >
+            <VisuallyHidden.Root>
+              <DialogTitle>
+                {bulkActionDialog.action === "approve" ? "Approve" : "Reject"}{" "}
+                {bulkActionDialog.type === "premium" ? "Premium" : "Business"}{" "}
+                Applications
+              </DialogTitle>
+            </VisuallyHidden.Root>
+            <div className="text-center space-y-4">
+              <div
+                className={cn(
+                  "mx-auto flex h-16 w-16 items-center justify-center rounded-full border-4",
+                  bulkActionDialog.action === "approve"
+                    ? "bg-green-50 border-green-100"
+                    : "bg-red-50 border-red-100"
+                )}
+              >
+                {bulkActionDialog.action === "approve" ? (
+                  <Check className="h-8 w-8 text-green-600 animate-pulse" />
+                ) : (
+                  <AlertTriangle className="h-8 w-8 text-red-600 animate-pulse" />
+                )}
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {bulkActionDialog.action === "approve" ? "Approve" : "Reject"}{" "}
+                  {selectedRequests.length} Application
+                  {selectedRequests.length > 1 ? "s" : ""}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {bulkActionDialog.action === "approve" ? (
+                    <>
+                      Are you sure you want to approve {selectedRequests.length}{" "}
+                      {bulkActionDialog.type} account application
+                      {selectedRequests.length > 1 ? "s" : ""}? This will grant
+                      them access to {bulkActionDialog.type} features.
+                    </>
+                  ) : (
+                    <>
+                      Please provide a reason for rejecting{" "}
+                      {selectedRequests.length} {bulkActionDialog.type} account
+                      application{selectedRequests.length > 1 ? "s" : ""}. This
+                      reason will be visible to the users.
+                    </>
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {bulkActionDialog.action === "reject" && (
+              <div className="space-y-4">
+                <Textarea
+                  placeholder="Enter rejection reason..."
+                  value={rejectReason}
+                  onChange={(e) => setRejectReason(e.target.value)}
+                  rows={4}
+                  className="resize-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                />
+              </div>
+            )}
+
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setBulkActionDialog({
+                    isOpen: false,
+                    action: "approve",
+                    type: "premium",
+                  });
+                  setRejectReason("");
+                }}
+                disabled={!!actionLoading}
+                className="min-w-20"
+              >
+                Cancel
+              </Button>
+              <Button
+                variant={
+                  bulkActionDialog.action === "approve"
+                    ? "default"
+                    : "destructive"
+                }
+                onClick={
+                  bulkActionDialog.action === "approve"
+                    ? handleBulkApprove
+                    : handleBulkReject
+                }
+                disabled={!!actionLoading}
+                className={cn(
+                  "min-w-[120px]",
+                  bulkActionDialog.action === "approve"
+                    ? "bg-green-600 hover:bg-green-700"
+                    : "bg-red-600 hover:bg-red-700"
+                )}
+              >
+                {actionLoading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    {bulkActionDialog.action === "approve"
+                      ? "Approving..."
+                      : "Rejecting..."}
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    {bulkActionDialog.action === "approve" ? (
+                      <>
+                        <Check className="h-4 w-4" />
+                        Approve {selectedRequests.length}
+                      </>
+                    ) : (
+                      <>
+                        <X className="h-4 w-4" />
+                        Reject {selectedRequests.length}
+                      </>
+                    )}
                   </div>
                 )}
               </Button>

@@ -172,8 +172,8 @@ const ProductGrid = () => {
       size="sm"
       onClick={() => setViewMode(mode)}
       className={`p-2 hoverEffect ${viewMode === mode
-          ? "bg-shop_light_green hover:bg-shop_dark_green border-shop_light_green"
-          : "hover:border-shop_light_green hover:text-shop_light_green"
+        ? "bg-shop_light_green hover:bg-shop_dark_green border-shop_light_green"
+        : "hover:border-shop_light_green hover:text-shop_light_green"
         }`}
       title={label}
     >
@@ -246,8 +246,8 @@ const ProductGrid = () => {
               size="sm"
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-2 hoverEffect ${showFilters
-                  ? "bg-shop_light_green hover:bg-shop_dark_green border-shop_light_green"
-                  : "hover:border-shop_light_green hover:text-shop_light_green"
+                ? "bg-shop_light_green hover:bg-shop_dark_green border-shop_light_green"
+                : "hover:border-shop_light_green hover:text-shop_light_green"
                 }`}
             >
               <Filter size={16} />

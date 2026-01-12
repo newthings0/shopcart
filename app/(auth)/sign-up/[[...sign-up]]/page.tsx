@@ -37,7 +37,7 @@ const SignUpPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_orange/5 via-shop_light_bg to-shop_light_pink/60 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-shop_orange/5 via-shop_light_bg to-shop_light_pink/60 relative overflow-hidden">
       <Container>
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,108,8,0.1)_0%,transparent_50%),radial-gradient(circle_at_80%_20%,rgba(59,156,60,0.08)_0%,transparent_50%),radial-gradient(circle_at_60%_80%,rgba(252,240,228,0.4)_0%,transparent_50%)]"></div>
@@ -90,7 +90,7 @@ const SignUpPage = () => {
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     className="flex items-start gap-4"
                   >
-                    <div className="p-2 bg-shop_orange/10 rounded-lg flex-shrink-0">
+                    <div className="p-2 bg-shop_orange/10 rounded-lg shrink-0">
                       <benefit.icon className="w-5 h-5 text-shop_orange" />
                     </div>
                     <div>
@@ -174,11 +174,10 @@ const SignUpPage = () => {
                 {/* Clerk Sign Up Component */}
                 <div className="clerk-sign-up">
                   <SignUp
-                    signInUrl={`/sign-in${
-                      redirectTo
+                    signInUrl={`/sign-in${redirectTo
                         ? `?redirectTo=${encodeURIComponent(redirectTo)}`
                         : ""
-                    }`}
+                      }`}
                     forceRedirectUrl={redirectTo || "/user/dashboard"}
                     fallbackRedirectUrl={redirectTo || "/user/dashboard"}
                   />
@@ -189,11 +188,10 @@ const SignUpPage = () => {
                   <p className="text-sm text-gray-600">
                     Already have an account?{" "}
                     <Link
-                      href={`/sign-in${
-                        redirectTo
+                      href={`/sign-in${redirectTo
                           ? `?redirectTo=${encodeURIComponent(redirectTo)}`
                           : ""
-                      }`}
+                        }`}
                       className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200"
                     >
                       Sign in here

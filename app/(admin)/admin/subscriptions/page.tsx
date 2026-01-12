@@ -1,4 +1,4 @@
-import AdminPremiumFeature from "@/components/admin/AdminPremiumFeature";
+import AdminSubscriptions from "@/components/admin/AdminSubscriptions";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,10 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function SubscriptionsPage() {
-  return (
-    <AdminPremiumFeature
-      featureName="Subscription Management"
-      description="Manage newsletter subscriptions, segment your audience, and send targeted campaigns with our premium subscription management tools."
-    />
-  );
+  return <AdminSubscriptions />;
 }

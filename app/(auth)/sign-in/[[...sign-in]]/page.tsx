@@ -138,8 +138,8 @@ const SignInPage = () => {
                 <div className="clerk-sign-in">
                   <SignIn
                     signUpUrl={`/sign-up${redirectTo
-                        ? `?redirectTo=${encodeURIComponent(redirectTo)}`
-                        : ""
+                      ? `?redirectTo=${encodeURIComponent(redirectTo)}`
+                      : ""
                       }`}
                     forceRedirectUrl={redirectTo || "/user/dashboard"}
                     fallbackRedirectUrl={redirectTo || "/user/dashboard"}

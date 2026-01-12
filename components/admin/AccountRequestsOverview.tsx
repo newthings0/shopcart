@@ -28,7 +28,7 @@ export default function AccountRequestsOverview({
   return (
     <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-6">
       {/* Premium Requests Overview */}
-      <Card className="border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-amber-100">
+      <Card className="border-2 border-amber-200 bg-linear-to-br from-amber-50 to-amber-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-sm font-medium text-amber-800">
             Premium Requests
@@ -72,7 +72,7 @@ export default function AccountRequestsOverview({
       </Card>
 
       {/* Business Requests Overview */}
-      <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
+      <Card className="border-2 border-blue-200 bg-linear-to-br from-blue-50 to-blue-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-sm font-medium text-blue-800">
             Business Requests
@@ -116,7 +116,7 @@ export default function AccountRequestsOverview({
       </Card>
 
       {/* Account Benefits Info */}
-      <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100 sm:col-span-2">
+      <Card className="border-2 border-purple-200 bg-linear-to-br from-purple-50 to-purple-100 sm:col-span-2">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-purple-800 flex items-center gap-2">
             <Users className="h-4 w-4" />

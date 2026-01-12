@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react";
 
 const AuthLoading = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink flex items-center justify-center">
+    <div className="min-h-screen bg-linear-to-br from-shop_light_bg via-white to-shop_light_pink flex items-center justify-center">
       <div className="text-center">
         <div className="relative">
           <Loader2 className="w-12 h-12 text-shop_dark_green animate-spin mx-auto mb-4" />

@@ -88,32 +88,30 @@ export function OrderPlacementSkeleton({
               return (
                 <div key={stepNum} className="flex items-center">
                   <div
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-300 ${
-                      status === "completed"
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-300 ${status === "completed"
                         ? "bg-green-600 text-white scale-110"
                         : status === "active"
-                        ? "bg-blue-600 text-white animate-pulse scale-110"
-                        : "bg-gray-200 text-gray-500"
-                    }`}
+                          ? "bg-blue-600 text-white animate-pulse scale-110"
+                          : "bg-gray-200 text-gray-500"
+                      }`}
                   >
                     {status === "completed" ? "✓" : stepNum}
                   </div>
                   {index < 3 && (
                     <div
-                      className={`w-6 sm:w-8 h-1 mx-1 sm:mx-2 rounded transition-all duration-500 ${
-                        getStepStatus(
-                          ["validating", "creating", "emailing", "redirecting"][
+                      className={`w-6 sm:w-8 h-1 mx-1 sm:mx-2 rounded transition-all duration-500 ${getStepStatus(
+                        ["validating", "creating", "emailing", "redirecting"][
+                        index + 1
+                        ]
+                      ) === "completed" ||
+                          getStepStatus(
+                            ["validating", "creating", "emailing", "redirecting"][
                             index + 1
-                          ]
-                        ) === "completed" ||
-                        getStepStatus(
-                          ["validating", "creating", "emailing", "redirecting"][
-                            index + 1
-                          ]
-                        ) === "active"
+                            ]
+                          ) === "active"
                           ? "bg-green-600"
                           : "bg-gray-200"
-                      }`}
+                        }`}
                     />
                   )}
                 </div>
@@ -165,7 +163,7 @@ export function OrderPlacementSkeleton({
         </div>
 
         {/* Order Summary Skeleton */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4 border border-blue-100 mx-2 sm:mx-0">
+        <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4 border border-blue-100 mx-2 sm:mx-0">
           <div className="text-base font-semibold text-gray-800 mb-4 text-center">
             📦 Order Summary
           </div>

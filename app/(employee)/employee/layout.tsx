@@ -1,13 +1,33 @@
-import { PaidFeatureMessage } from "@/components/employee/PaidFeatureMessage";
+import { redirect } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentEmployee } from "@/actions/employeeActions";
+import EmployeeNav from "@/components/employee/EmployeeNav";
 
-// Employee features are only available in the paid version
-// Anyone can access this route to see the upgrade message
+// Force dynamic rendering for all employee routes (authentication required)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function EmployeeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Show paid feature message instead of actual employee dashboard
-  return <PaidFeatureMessage />;
+  const user = await currentUser();
+
+  if (!user) {
+    redirect("/sign-in");
+  }
+
+  const employee = await getCurrentEmployee();
+
+  if (!employee || employee.status !== "active") {
+    redirect("/");
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <EmployeeNav employee={employee} />
+      <main className="container mx-auto px-4 py-6">{children}</main>
+    </div>
+  );
 }

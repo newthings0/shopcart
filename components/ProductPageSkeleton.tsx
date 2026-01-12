@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 
 const ProductPageSkeleton = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50/50">
+    <div className="min-h-screen bg-linear-to-b from-white to-gray-50/50">
       <Container>
         {/* Breadcrumb Skeleton */}
         <div className="flex items-center space-x-2 mb-6 pt-6">

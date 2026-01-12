@@ -172,7 +172,7 @@ export function ServerCartContent({
           <div key={item.product._id} className="border rounded-lg p-4">
             <div className="flex gap-4">
               {/* Product Image */}
-              <div className="relative w-24 h-24 flex-shrink-0">
+              <div className="relative w-24 h-24 shrink-0">
                 <Image
                   src={
                     item.product.images?.[0]

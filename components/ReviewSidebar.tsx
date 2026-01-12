@@ -177,11 +177,10 @@ const ReviewSidebar = React.memo(
                       >
                         <StarIcon
                           size={40}
-                          className={`${
-                            value <= (hoverRating || rating)
+                          className={`${value <= (hoverRating || rating)
                               ? "text-shop_light_green fill-shop_light_green"
                               : "text-gray-300"
-                          } transition-colors`}
+                            } transition-colors`}
                         />
                       </button>
                     ))}
@@ -194,7 +193,7 @@ const ReviewSidebar = React.memo(
                           style={{ width: `${(rating / 5) * 100}%` }}
                         />
                       </div>
-                      <span className="text-sm font-medium text-shop_dark_green min-w-[80px]">
+                      <span className="text-sm font-medium text-shop_dark_green min-w-20">
                         {rating} {rating === 1 ? "star" : "stars"}
                       </span>
                     </div>
@@ -223,19 +222,17 @@ const ReviewSidebar = React.memo(
                   maxLength={100}
                   required
                   disabled={isSubmitting}
-                  className={`border-gray-300 focus:border-shop_light_green ${
-                    titleLength > 0 && !isTitleValid ? "border-red-300" : ""
-                  }`}
+                  className={`border-gray-300 focus:border-shop_light_green ${titleLength > 0 && !isTitleValid ? "border-red-300" : ""
+                    }`}
                 />
                 <div className="flex items-center justify-between">
                   <p
-                    className={`text-xs ${
-                      titleLength > 0 && !isTitleValid
+                    className={`text-xs ${titleLength > 0 && !isTitleValid
                         ? "text-red-500"
                         : titleLength >= 5
-                        ? "text-green-600"
-                        : "text-gray-500"
-                    }`}
+                          ? "text-green-600"
+                          : "text-gray-500"
+                      }`}
                   >
                     {titleLength < 5
                       ? `${5 - titleLength} more characters needed`
@@ -262,19 +259,17 @@ const ReviewSidebar = React.memo(
                   rows={8}
                   required
                   disabled={isSubmitting}
-                  className={`border-gray-300 focus:border-shop_light_green resize-none ${
-                    contentLength > 0 && !isContentValid ? "border-red-300" : ""
-                  }`}
+                  className={`border-gray-300 focus:border-shop_light_green resize-none ${contentLength > 0 && !isContentValid ? "border-red-300" : ""
+                    }`}
                 />
                 <div className="flex items-center justify-between">
                   <p
-                    className={`text-xs ${
-                      contentLength > 0 && !isContentValid
+                    className={`text-xs ${contentLength > 0 && !isContentValid
                         ? "text-red-500"
                         : contentLength >= 20
-                        ? "text-green-600"
-                        : "text-gray-500"
-                    }`}
+                          ? "text-green-600"
+                          : "text-gray-500"
+                      }`}
                   >
                     {contentLength < 20
                       ? `${20 - contentLength} more characters needed`
@@ -299,7 +294,7 @@ const ReviewSidebar = React.memo(
             </div>
 
             {/* Footer with Actions */}
-            <SheetFooter className="mt-6 pt-6 border-t flex-shrink-0">
+            <SheetFooter className="mt-6 pt-6 border-t shrink-0">
               <div className="flex flex-col sm:flex-row gap-3 w-full">
                 <Button
                   type="button"

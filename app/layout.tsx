@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
-import Script from "next/script";
-import Head from "next/head";
 import { UserDataProvider } from "@/contexts/UserDataContext";
 import PremiumFloatingButton from "@/components/PremiumFloatingButton";
 import "./globals.css";
@@ -101,13 +99,9 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
-  const GADSENSE_CLIENT_ID = "ca-pub-6542623777003381"; // Define it once
   return (
     <ClerkProvider>
       <html lang="en">
-        <Head>
-          <meta name="google-adsense-account" content={GADSENSE_CLIENT_ID} />
-        </Head>
         <body
           className={`${poppins.variable} ${raleway.variable} ${opensans.variable} antialiased`}
         >
@@ -127,12 +121,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
               },
               className: "sonner-toast",
             }}
-          />
-
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GADSENSE_CLIENT_ID}`}
-            strategy="beforeInteractive"
           />
         </body>
       </html>

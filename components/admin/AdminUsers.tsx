@@ -81,6 +81,7 @@ const AdminUsers: React.FC = () => {
   const [totalUsersCount, setTotalUsersCount] = useState(0);
   const [sanityUsersCount, setSanityUsersCount] = useState(0);
   const [activeUsersCount, setActiveUsersCount] = useState(0);
+  const [clerkOnlyCount, setClerkOnlyCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(20);
   const [searchTerm, setSearchTerm] = useState("");
@@ -92,6 +93,7 @@ const AdminUsers: React.FC = () => {
     new Set()
   );
   const [tableLoading, setTableLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState<"all" | "sanity" | "clerk">("all");
 
   // Modal state
   const [actionModal, setActionModal] = useState<{
@@ -333,22 +335,28 @@ const AdminUsers: React.FC = () => {
       try {
         // Add cache-busting parameter for fresh data
         const cacheBuster = forceFresh ? `&_t=${Date.now()}` : "";
+        const tabParam =
+          activeTab === "sanity"
+            ? "&sanityOnly=true"
+            : activeTab === "clerk"
+              ? "&clerkOnly=true"
+              : "";
         const data = await safeApiCall(
-          `/api/admin/users/combined?limit=${perPage}&offset=${
-            page * perPage
-          }&query=${debouncedSearchTerm}${cacheBuster}`
+          `/api/admin/users/combined?limit=${perPage}&offset=${page * perPage
+          }&query=${debouncedSearchTerm}${cacheBuster}${tabParam}`
         );
         setUsers(data.users);
         setTotalUsersCount(data.totalCount);
         setSanityUsersCount(data.sanityUsersCount || 0);
         setActiveUsersCount(data.activeUsersCount || 0);
+        setClerkOnlyCount(data.clerkOnlyCount || 0);
       } catch (error) {
         handleApiError(error, "Users fetch");
       } finally {
         setTableLoading(false);
       }
     },
-    [debouncedSearchTerm, perPage]
+    [debouncedSearchTerm, perPage, activeTab]
   );
 
   // Selection functions
@@ -396,6 +404,11 @@ const AdminUsers: React.FC = () => {
   useEffect(() => {
     fetchUsers(currentPage);
   }, [fetchUsers, currentPage]);
+
+  // Reset to first page when tab changes
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [activeTab]);
 
   return (
     <>
@@ -458,6 +471,53 @@ const AdminUsers: React.FC = () => {
               </Button>
             </div>
           </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-2 border-b">
+          <button
+            onClick={() => setActiveTab("all")}
+            className={cn(
+              "px-4 py-2 font-medium text-sm transition-colors relative",
+              activeTab === "all"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            All Users
+            <span className="ml-2 px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded-full">
+              {totalUsersCount}
+            </span>
+          </button>
+          <button
+            onClick={() => setActiveTab("sanity")}
+            className={cn(
+              "px-4 py-2 font-medium text-sm transition-colors relative",
+              activeTab === "sanity"
+                ? "text-green-600 border-b-2 border-green-600"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            <Database className="h-4 w-4 inline mr-1" />
+            Sanity Users
+            <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full">
+              {sanityUsersCount}
+            </span>
+          </button>
+          <button
+            onClick={() => setActiveTab("clerk")}
+            className={cn(
+              "px-4 py-2 font-medium text-sm transition-colors relative",
+              activeTab === "clerk"
+                ? "text-orange-600 border-b-2 border-orange-600"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Clerk Only
+            <span className="ml-2 px-2 py-0.5 bg-orange-100 text-orange-800 text-xs rounded-full">
+              {clerkOnlyCount}
+            </span>
+          </button>
         </div>
 
         {(loading && users.length === 0) || tableLoading ? (
@@ -934,11 +994,9 @@ const AdminUsers: React.FC = () => {
         onClose={() => setIsDeleteDialogOpen(false)}
         onConfirm={handleDeleteUsers}
         title="Delete Users"
-        description={`Are you sure you want to delete ${
-          selectedUsers.length
-        } user${
-          selectedUsers.length > 1 ? "s" : ""
-        }? This action cannot be undone.`}
+        description={`Are you sure you want to delete ${selectedUsers.length
+          } user${selectedUsers.length > 1 ? "s" : ""
+          }? This action cannot be undone.`}
         itemCount={selectedUsers.length}
         isLoading={isDeleting}
       />
@@ -951,13 +1009,13 @@ const AdminUsers: React.FC = () => {
         user={
           actionModal.user
             ? {
-                firstName: actionModal.user.firstName,
-                lastName: actionModal.user.lastName,
-                email: actionModal.user.email,
-                isActive: actionModal.user.isActive,
-                inSanity: actionModal.user.inSanity,
-                notificationCount: actionModal.user.notificationCount,
-              }
+              firstName: actionModal.user.firstName,
+              lastName: actionModal.user.lastName,
+              email: actionModal.user.email,
+              isActive: actionModal.user.isActive,
+              inSanity: actionModal.user.inSanity,
+              notificationCount: actionModal.user.notificationCount,
+            }
             : null
         }
         action={actionModal.action}

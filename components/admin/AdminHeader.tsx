@@ -161,7 +161,7 @@ const AdminHeader = ({ user }: AdminHeaderProps) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-white via-shop_light_bg to-shop_light_pink rounded-2xl shadow-lg border border-shop_light_green/10 p-6">
+    <div className="bg-linear-to-r from-white via-shop_light_bg to-shop_light_pink rounded-2xl shadow-lg border border-shop_light_green/10 p-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         {/* Left Side - Welcome & Date */}
         <div className="space-y-1">
@@ -226,7 +226,7 @@ const AdminHeader = ({ user }: AdminHeaderProps) => {
                       key={notification.id}
                       className="flex gap-3 p-4 bg-shop_light_bg rounded-lg border border-shop_light_green/10 hover:bg-shop_light_green/5 transition-colors"
                     >
-                      <div className="flex-shrink-0 w-2 h-2 bg-shop_orange rounded-full mt-2"></div>
+                      <div className="shrink-0 w-2 h-2 bg-shop_orange rounded-full mt-2"></div>
                       <div className="flex-1 space-y-1">
                         <div className="font-medium text-dark-color">
                           {notification.title}
@@ -249,7 +249,7 @@ const AdminHeader = ({ user }: AdminHeaderProps) => {
 
           {/* User Avatar */}
           <div className="flex items-center gap-2 p-2 bg-white rounded-xl border border-shop_light_green/20">
-            <div className="w-8 h-8 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-lg flex items-center justify-center text-white font-semibold text-sm">
+            <div className="w-8 h-8 bg-linear-to-br from-shop_light_green to-shop_dark_green rounded-lg flex items-center justify-center text-white font-semibold text-sm">
               {user?.firstName?.charAt(0) || "A"}
             </div>
             <div className="hidden sm:block">
